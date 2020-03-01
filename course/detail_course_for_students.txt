@@ -1,0 +1,31 @@
+1. Baixar o xampp e configurar os arquivos: hosts, httpd-vhosts.conf
+2. Testar um arquivo com texto puro e explanar a questão de interpretação do navegador à textos com e sem acento.
+3. Denotar textos marcação que formatem o texto, assim mostrando marcadores que influenciam a maneira com que cada texto será exibido (html, head, title, meta charset=utf-8, body, h1, h2, ul, li).
+4. Esplanar sobre o uso dessas marcaçoes mostrando o termo usado definitivamente durante o curso: tags.
+5. Mostrar aos alunos que a ineficiência de estética das marcações html (tags) é onde encontra-se o seu primeiro desafio como programador frontend.
+6. Esplanar um pequeno resumo da origem do HTML e a necessidade de usá-la nos dias atuais para desenvolvimento web.
+7. Esplanar o conceito usual de cada tag e do conjunto de tags que forma o HTML, sintaxe e:
+8. Denotar o uso de cada tag usada no primeiro exemplo.
+9. Mostrar aos alunos tags que podem receber atributos, e nem todas possuem uma tag de fechamento, exemplificando com o uso da tag <img src="c:\site\index.html"> por não ter conteúdo por si só.
+10. Notar as tags de estrutura do HTML: <html>, <head>, <body>, e a instrução <!DOCTYPE>, esclarecendo a declaração hierarquica das tags pais e filhos.
+11. Declaração da instrução especial <!DOCTYPE html>, que não se trata de uma tag. Apresentar a sua função e mostrar aos alunos que existiam comando antigos e complexo, mas que hoje faz-se uso apenas dessa declaração simples.
+12. Explanar aos alunos que o HTML5 possui diversas tags novas e apresentar as tags de: títulos, parágrafos e ênfase:
+<h1> ~ <h6> - heading - segundo as ordens de importância. 
+13. Explanar uma breve explicação sobre a importância dessas tags heading, levando em consideração a ordem e relevância de seu uso nos sites de pesquisas como google, yahoo, etc..., e o uso das mesmas em navegadores especiais para acessibilidad e facilidade de usuários, diferenciando seus conteúdos.
+14. Exemplificar uso de Tags de para parágrafos <p>
+15. Apresentar tags de ênfase: <strong>, <em>, <b>, <i>, <small>
+16. Explanar o uso da tag <img> e seus atributos: src, alt.
+17. Exemplificar usos das tags adjacentes da tag <img>, tais como: <figure>: usada igual a tag <img>, mas permitindo usar a tag auxiliar: <figcaption>, onde acopla-se uma legenda à imagem.
+18. Explicar sobre a estrutura e que não há nenhum rigor técnico que defina o uso de uma melhor organização do projeto, mas geralmente adaptaremos de maneira que fique melhor para o nosso entendimento.
+19. Prepara a estrutura de diretórios para organizar o projeto em: css, img e js
+20. Breve conceito de IDES (IntegratedDevelopment Environment). IDEs com realce de sintaxe: gedit, sublime, atom, notepad++; E os IDEs com  autocompletar e visualização como o Exlipse e o Visual Studio.
+
+
+
+
+
+
+
+
+ 
+
