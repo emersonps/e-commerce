@@ -1,3 +1,5 @@
+1- HTML
+
 1. Baixar o xampp e configurar os arquivos: hosts, httpd-vhosts.conf
 2. Testar um arquivo com texto puro e explanar a questão de interpretação do navegador à textos com e sem acento.
 3. Denotar textos marcação que formatem o texto, assim mostrando marcadores que influenciam a maneira com que cada texto será exibido (html, head, title, meta charset=utf-8, body, h1, h2, ul, li).
@@ -19,6 +21,106 @@
 18. Explicar sobre a estrutura e que não há nenhum rigor técnico que defina o uso de uma melhor organização do projeto, mas geralmente adaptaremos de maneira que fique melhor para o nosso entendimento.
 19. Prepara a estrutura de diretórios para organizar o projeto em: css, img e js
 20. Breve conceito de IDES (IntegratedDevelopment Environment). IDEs com realce de sintaxe: gedit, sublime, atom, notepad++; E os IDEs com  autocompletar e visualização como o Exlipse e o Visual Studio.
+
+Exercício de HTML
+
+2 - CSS
+
+1. Após o exercício, declarar alguns exemplos de Estilização no próprio HTML para que os alunos possam entender com mais clareza como eram estilizados os textos no passado, mostrando a eles que no lugar dessa metodologia surgiu o CSS.
+2. Em seguida entrar no conceito de que o efeito da folha de estilo é agregado ao HTML por arquivos separados ou no próprio código HTML.
+3. Sintaxe (atributos e valores) e Inclusão de CSS: {color: blue; background: yellow} 
+4. Exemplificar com as duas maneiras (no próprio código e com css e com a tag style).
+5. Exemplificar o uso de CSS com arquivo externo (<link	rel="stylesheet" href="estilos.css">) com a chamada dentro do HEAD
+6. Conceito tipográficos - criar exemplo de formatação para paragrafos, títulos:
+ - Usar como exemplo de família de fontes: fontes serifadas (serif: Times New Roman), fontes sem serifas (sans-serif: Arial, Arial Black), e fontes monospace (Fontes com curvas mais delicadas: Courier)
+ - Usar um tipo de fonte padrão para todo o documento HTML, acplicando um estilo de fonte no body{font-family: "Arial",	"Helvetica", sans-serif;}
+7. Exemplificar o uso de estilos de fonte com a propriedade font-style: (normal, italic, oblique)
+8. Trabalhar com o conceito de alinhamento e decoração de texto, exemplificando com os seguintes atributos e valores:
+ - text-align: right / center / left / jutify;
+ - Definir uma série de espaçamento de texto, como a seguir:
+p{
+ line-height: 3px;	/*	tamanho	da	altura	de	cada	linha	*/
+ letter-spacing: 3px;	/*	tamanho	do	espaço	entre	cada	letra	*/
+ word-spacing: 5px;	/*	tamanho	do	espaço	entre	cada	palavra	*/
+ text-indent: 30px;	/*	tamanho	da	margem	da	primeira	linha	do	texto	*/
+}
+9. Fazer uso de imagens de fundo, com exemplos claros de uso da sintaxe:
+h1{
+ background-image: url(sobre-background.jpg);
+}
+
+10. Uso de bordas, exemplificando aplicação na página, mostrando as duas sintaxes do atributo, incluíndo o uso do border-style: none, e também fazer testes como os valores do atributo style: dashed, dotted, double, groove;
+Exemplo:
+body{
+ border-color:	red;
+ border-style:	solid;
+ border-width: 1px;
+}
+
+ou 
+
+body{
+ border: 1px	solid	red;
+}
+
+Exercício de CSS
+
+CSS - Parte 2
+
+1. Definição de uso RGB, mostrar aos alunos o conceito de formação de cores RGB - forma mais 16 milhões de cores com a combinação de três cores bases: Red, Green e Blue, variando a intensidade de cada uma de suas cores entre 0 e 255. - Fazer uso de uma aplicação que facilite a descoberta ou formação das cores.
+2. Exemplificar diversos usos de cores com os atributos color, background e border-color: yellow; rgb(255, 200, 0); 
+- Mostrar que esses modos não é o mais comum por questão de incompatibilidade de navegadores;
+- Fazer uso da notação hexadecimal: #F2EDED (suporte universal aos navegadores) 
+- Mostrar aos alunos os dois canais que representam cada cor (RGB) nessa notação;
+- Aplicar a teoria da formação de base hexadecimal (0 à 15 - decimal, sendo valores hexadecimal 0-9 e A-F);
+- Exemplificar a simplificação de caracteres repetidos em hexadecimal. Exemplo: #EEFF66. Ficaria: #EF6;
+
+Outros assuntos HTML e CSS para praticar:
+1. Listas: 
+	- Não ordenada: <ul><li>Item</li></ul>
+	- Ordenada: <ol><li>Item</li></ol>
+	- Lista de definição: <dl><dt>Titulo</dt><dd>paragrafo</dd><dt>Titulo 2</dt><dd>Parágrafo 2</dd></dl>
+2. Espaçamento, Margens e Dimensões:
+	- padding: para espaçamento interno; 
+		- Subpropriedades: padding-top
+				   padding-right
+				   padding-bottom
+                                   padding-left
+		- shorthand property: mostrar o sentido horário em que se faz a leitura para a definição das 		subpropriedades
+Exemplificar como:
+p{
+ padding: 10px; //valor aplicado a todas as direções
+}
+
+p{
+ padding: 10px 15px; //padding-top e padding-bottom
+}
+
+p{
+ padding: 10px 20px 15px; //padding-top, padding-right e padding-left, padding-bottom
+}
+
+p{
+ padding: 10px 20px 15px 5px; //padding-top, padding-right, padding-bottom, padding-left
+}
+
+	- margin: para margens; - mostrar uso das propriedade e 'shorthand property' da mesma forma como do padding, e exemplificar que a diferença está em um limite de espaços além do elemento, ou seja, fora de seus limites, externamente.
+p{
+ margin: 0 auto; //margin-top e margin-bottom = 0; margin-right e margin-left = auto;
+}
+
+	- height e width: para dimensões - Exemplificar conforme o código abaixo:
+p{
+ background-color: red;
+ height: 300px;
+ width: 300px;
+}
+
+
+
+
+
+	 
 
 
 
