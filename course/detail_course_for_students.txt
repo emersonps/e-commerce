@@ -116,7 +116,73 @@ p{
  width: 300px;
 }
 
+3. Links HTML - Exemplificar com exercícios propostos links (âncoras) redirecionando para outro endereço e ID (indentificadores): Visite o site da <a href="http://www.caelum.com.br">Caelum</a> e <p>Mais	informações <a href="#info">aqui</a>.</p> 
 
+Exercícios de LINK
+
+CSS Parte 3
+
+1. Aplicar o conceito com exemplos e exercícios de ID e Filho (conceituando o uso de tags coringa como <div> e <span>):
+- Seletor (no CSS) de ID: (#) => #cabecalho{color: white; text-align: center}, e indicar esse seletor a qualquer tag: p, div, span, desde que estejam identificadas: <span id="cabecalho"></span>
+- Explanar aos alunos que o ID deve ser único em todo o documento (página), e em cascata, seus filhos.
+2. Seletor Hierárquico: exemplificar com seletor (no css) e um elemento filho estilizado: 
+#rodape img{
+  margin-right: 30px;
+  vertical-align: middle;
+  width: 94px;
+}
+3. Float - Conceituar o uso do "float" que permite: tirar um elemento do fluxo vertical, ou elementos que ocupem toda a largura da página e fazer com que os elementos abaixo dele fula ao seu redor:
+
+Exercícios: Seletores e Flutuação de Elementos
+4. Deve-se explicar à turma o que muda no uso das tags no HTML5 e CSS3, sobre a semântica que devemos usar e sobre a compatibilidade com os navegadores.
+
+ 
+HTML SEMÂNTICO E POSICIONAMENTO NO CSS
+
+1. Conceituar o Processo de Desenvolvimento de uma tela falando sobre os levantamentos de requisitos, profissionais e ferramentas utilizadas para desenvolver um rascunho do projeto. (Recusros: Pesquisas, levantamento de requisitos com o cliente, profissionais: (Pessoas formadas na área de comunicação) e áreas responsáveis: UX (User Experience Design) e IxD (Interection Design).
+2. Esboços das visões: chamados de wireframes e auxiliam no restante do design. (mostrar um exemplo de wireframe). - Mostrar aos alunos um exemplo de wireframe.
+3. Com o wireframe em mãos: adicionar cores, imagens, textos. Trabalho de responsabilidade dos Designers, que usam como ferramanta: Photoshop, Fireworks, GIMP, etc.
+4. Mostrar aos alunos que é à partir daí que a equipe de programadores frontend entra. Para dar vida ao projeto e fazer funcionar.
+5. O Projeto Mirror Fashion - uma equipe de UX já desenvolveu a ideia que iremos praticar - Mostrar um modelo de como ficará a página.
+
+ANALISANDO O LAYOUT
+1. Levar os alunos a fazer uma análise do comportamento e disposição dos elementos na página, como por exemplo, o cabeçalho e rodapé que deverão ser padrão para as demais páginas e ensinar que a leitura dos elementos devem ser da esquerda para a direita e para baixo.
+
+ESTRUTURA DA PÁGINA
+1. Analisar que a página poderá ser dividida em três partes, sendo Cabeçalho, Conteúdo (será diferente para cada página), e rodapé.
+2. Analisar a largura e limite de cada conteúdo dentro de cada um desses elementos
+
+EXERCÍCIO INDEX
+1. Adicionar os códigos de definição das áreas: 
+<body>
+  <header>
+	<!-- Conteúdo do cabeçalho	-->
+  </header>
+
+  <div id="main">
+  	<!-- Conteúdo principal	-->
+  </div>
+
+  <div id="destaques">
+  	<!-- Painéis com destaques	-->
+  </div>
+  
+  <footer>
+	<!-- Conteúdo do rodapé	-->
+	Estrutura da página.	
+  </footer>
+</body>
+
+3. Explicar aos alunos o uso das novas tags que são parte do HTML 5 (<header> e <footer>)
+4. Deixar claro o distinto papel de HTML e CSS, onde o papel do HTML é marcar o conteúdo da página, e que ele precisa ser claro e limpo; O Papel do CSS sim, é de estilizar, embelezar, dar cores e efeitos visuais à página.
+5. Parte Semântica do HTML. Mostrar a importância disso na página para os usuários com deficiência visual, onde a leitura semântica HTML permite que o usuário com deficiência visual ouça a leitura da página.
+
+
+ 
+
+
+ 
+ 
 
 
 
