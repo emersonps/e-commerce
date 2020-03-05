@@ -177,8 +177,79 @@ EXERCÍCIO INDEX
 4. Deixar claro o distinto papel de HTML e CSS, onde o papel do HTML é marcar o conteúdo da página, e que ele precisa ser claro e limpo; O Papel do CSS sim, é de estilizar, embelezar, dar cores e efeitos visuais à página.
 5. Parte Semântica do HTML. Mostrar a importância disso na página para os usuários com deficiência visual, onde a leitura semântica HTML permite que o usuário com deficiência visual ouça a leitura da página.
 
+ANALISANDO O HEADER
+1. Verificar e analisar o conteúdo de dentro do HEADER: ícone, lista, mensagens, etc.
+2. Questionar: que tipo de conteúdo usaremos? E a imagem com ícone? é um texto, ou um CSS decorativo?
+3. Criar o primeiro conteúdo do Header:
+	<header>
+            <!--	Conteúdo	do	cabeçalho	-->
+            <nav>
+                <ul>
+                    <li><a href="#">Sua Conta</a></li>
+                    <li><a href="#">Lista de Desejos</a></li>
+                    <li><a href="#">Cartão Fidelidade</a></li>
+                    <li><a href="sobre.html">Sobre</a></li>
+                    <li><a href="#">Ajuda</a></li>
+                </ul>
+            </nav>
+        </header>
+4. Conceituar ID e Class, onde ID deve ser único e Class pode ser usado mais de uma em um mesmo elemento.
+5. Exercício do conteúdo: criando o header
 
- 
+CSS RESET
+1. Mostrar aos alunos a importância do CSS Reset que evita que o navegador utilize uma série de estilos padrão quando não há um estilo definido pelo programador, forçando um estilo padrão que é setado sempre que carregarmos a página;
+2. Fazer uso dos três arquivos: Reset (muda todos os valores possíveis para um valor padrão. Por exemplo: h1 e small têm o mesmo tamanho), Base (onde margens e dimensoes de alguns elementos são padronizados) e Font (define um tamanho para tipos de forma a tornar o visual consistente inclusive nos dispositivos móveis) - frontend do Yahoo;
+3. CSS Resete do Eric Meyer - é um arquivo bem reduzido.
+
+
+BLOCK VS INLINE
+Falar sobre a distinção desses dois tipos de elementos:
+1. Falar sobre os elementos em blocos, como <h1>, <p>, <div> etc, aqueles que ao serem inseridos podemos ver que não há um elemento à sua esquerda ou direita, pois ocupam toda a largura do documento.
+2. Elementos em linha são aqueles que ocupam somente o espaço necessário para que seu próprio conteúdo seja exibido, permitindo a exibição dos próximos elementos na mesma linha, exemplo: <a>, <span>, <strong>, etc...
+3. DISPLAY, o atributo que permite mudar o comportamento padrão desses dois tipos de elementos: display: block, display: inline.
+
+Exercícios Reset e Display
+
+POSITION: STATIC, RELATIVE E ABSOLUTE
+
+1. Esplanar para os alunos os tipos de propriedades que permitem posicionar um elemento;
+2. Explicar que os objetos não obedecem essas propriedade, pois dependem de outra propriedade: position;
+3. Exemplificar que o position determina qual o mode de posicionamento de um elemento na qual ela pode receber: POSITION: STATIC, RELATIVE E ABSOLUTE;
+
+	Explicação para a turma:
+- static => elemento com essa posição permanece com sua posição padrão, não obedecendo nenhum atributo de posicionamento;
+- relative => permite atribuir obedecer as regras aplicadas de cordenadas especificadas em relação a posição original do objeto;
+Exemplo:
+
+.logotipo{
+	position: relative;
+	top: 20px;
+	left: 50px;
+}
+- absolute => o mais complexo, pois exigem algumas regras que alteram seu comportamento em determinadas circustâncias. Por padrão, o elemento que recebe esse atributo usa como referência qualquer elemento que seja seu pai na estrutura HTML cujo o modo desse pai seja diferente de static (que é o padrão), e obedece as regras de coordenadas de acordo com o tamanho total desse elemento pai:
+	Regra 1 - Quando o elemento não tem um pai, ele usa como referência para as suas coordenadas o limite da página do lado direito e superior.
+	Regra 2 - O mesmo acontece se definirmos a propriedade relative ao elemento pai, usando o elemento pai como base de referência para as suas coordenadas (superior e direita).
+	Regra 3 - caso o elemento pai não tenha uma position definida ou stati (padrão), o filho se comportará como na regra 1
+
+EXERCÍCIO DE POSICIONAMENTO
+
+SUPORT HTML5 NO INTERNET EXPLORER ANTIGO
+
+1. Mostrar aos alunos que somente há suporte para tags hmlt5 à partir do IE9.
+2. Se abrirmos o site em navegadores antigos, veremos a página com o conteúdo quebrado, pois o navegador não possui suporte para as tags semânticas do html5: header, footer, nav, section, etc.
+3. Entretanto, há um hack https://github.com/afarkas/html5shiv aprensentar aos alunos para que com isso possam usar as tags semânticas nos navegadores antigos:
+colocar esse código dentro do HEAD:
+
+<!--[if	lt	IE	9]>
+	<script	src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+
+
+
+
+
+
 
 
  
