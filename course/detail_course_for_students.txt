@@ -227,7 +227,7 @@ Exemplo:
 	left: 50px;
 }
 - absolute => o mais complexo, pois exigem algumas regras que alteram seu comportamento em determinadas circustâncias. Por padrão, o elemento que recebe esse atributo usa como referência qualquer elemento que seja seu pai na estrutura HTML cujo o modo desse pai seja diferente de static (que é o padrão), e obedece as regras de coordenadas de acordo com o tamanho total desse elemento pai:
-	Regra 1 - Quando o elemento não tem um pai, ele usa como referência para as suas coordenadas o limite da página do lado direito e superior.
+	Regra 1 - Quando o elemento não tem um pai, ele usa como referência para as suas coordenadas o limite da página do lado direito e superior (conforme indicado no atributo left, right, top ou bottom).
 	Regra 2 - O mesmo acontece se definirmos a propriedade relative ao elemento pai, usando o elemento pai como base de referência para as suas coordenadas (superior e direita).
 	Regra 3 - caso o elemento pai não tenha uma position definida ou stati (padrão), o filho se comportará como na regra 1
 
@@ -244,12 +244,98 @@ colocar esse código dentro do HEAD:
 	<script	src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
 
+4. Em versões muitos antigas, onde 1% ainda usam essas versões de IE, versão 6 e 7, não funcionam normalmente as tags mesmo usando o hack.
 
 
+MAIS HTML E CSS
+
+1.Analisar as áres do corpo e rodapé da página.
+
+FORMULÁRIOS
+
+1. Explanar o uso da tag <form> que tem a função de capturar dados do usuário e submetê-los a algum serviço da Internet.
+2. Filhos: <input> <button> e outros.
+3. Exemplificar o fluxo de dados: passam para o <form> por meio da tag <input>, que recebe os dados digitados;
+4. O atributo 'type' define a finalidade desse input. Exemplo: type="search";
+5. Os dados são enviados para a tag <button> que submete as informações do formulário
+<form>
+	<input type="search">
+	<button>Buscar</button>
+</form>
+
+POSICINAMENTO COM FLOAT E CLEAR
+
+1. Exemplificar o clear como uma propriedade que pode ser definida com 'right', 'left', ou 'both' o comportamento dos elementos que estarão ao redor do objeto que será definido com essa propriedade. Podemos dizer que sua função é: "limpe o fluxo do documento ao meu lado", impedindo que os elementos fiquem à direita, à esquerda ou em ambos os lados, respectivamente.
+
+Para usar Clear, o outro elemento deve estar com float especificado para qual posição irá flutura, os elementos que preencherem o espaço do fluxo, devem conter o clear e definir da seguinte forma:
+
+left: Elemento é empurrado para baixo de elementos com float left;
+right: Elemento é empurrado para baixo de elementos com float right;
+both: Elemento é empurrado para baixo de elementos com float left ou right;
+none: Elemento não é empurrado para baixo de elementos com float.
+
+TRANFORMAÇÃO DE TEXTO
+
+1. Utilizar a propriedade text-transformation: uppercase, lowercase, capitalize, 
+2. Decoração de texto: mostrar exemplos de texto decorados como: <a>, <del>
+
+CASCATA E HERANÇA NO CSS
+1. Explanar o uso de cascata e herança no CSS com exemplos de divs com class="pai", e filhos com tags h1 e h2
+<div id="pai">
+<h1>Sou um título</h1>
+<h2>Sou um subtítulo</h2>
+</div>
+#pai {
+	color: blue;
+}
+
+#pai {
+	color: blue;
+}
+
+h1 {
+	padding-left: 40px;
+}
+
+SELETORES DE ATRIBUTOS:
+Exemplificar:
+
+.busca input[type=search] {
+	width: 170px;
+}
 
 
+INHERIT
+valor atribuído a uma propriedade que queremos herdar nos filhos
+
+Exemplificar aos alunos, uma imagem que preencha uma div conforma a definições de propriedades para essa div:
+
+<div>
+	<img src="box-model.png" alt="box model">
+</div>
+
+Sempre que definirmos o tamanho da div...
+div {
+	border: 2px solid;
+	border-color: red;
+	width: 30px;
+	height: 30px;
+}
+
+Teríamos que definir o tamanho da imagem para caber na div...
+img {
+	width: 30px;
+	height:	30px;
+}
+
+Ao atribuir Inherit nas mesmas propriedades do pai e do filho, teremos os valores do filho definido automaticamente igua ao do pai:
+img {
+	width: inherit;
+	height: inherit;
+}
 
 
+EXERCÍCIO MENU DE DESTAQUE
 
 
  
