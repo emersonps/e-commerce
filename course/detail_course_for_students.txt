@@ -267,11 +267,11 @@ POSICINAMENTO COM FLOAT E CLEAR
 
 1. Exemplificar o clear como uma propriedade que pode ser definida com 'right', 'left', ou 'both' o comportamento dos elementos que estarão ao redor do objeto que será definido com essa propriedade. Podemos dizer que sua função é: "limpe o fluxo do documento ao meu lado", impedindo que os elementos fiquem à direita, à esquerda ou em ambos os lados, respectivamente.
 
-Para usar Clear, o outro elemento deve estar com float especificado para qual posição irá flutura, os elementos que preencherem o espaço do fluxo, devem conter o clear e definir da seguinte forma:
+Para usar Clear, o outro elemento deve estar com float especificado para qual posição irá flutuar, os elementos que preencherem o espaço do fluxo devem conter o clear e definir da seguinte forma:
 
 left: Elemento é empurrado para baixo de elementos com float left;
 right: Elemento é empurrado para baixo de elementos com float right;
-both: Elemento é empurrado para baixo de elementos com float left ou right;
+both: Elemento é empurrado para baixo de elementos com float left ou float right;
 none: Elemento não é empurrado para baixo de elementos com float.
 
 TRANFORMAÇÃO DE TEXTO
@@ -338,19 +338,48 @@ img {
 EXERCÍCIO MENU DE DESTAQUE
 
 
+DISPLAY INLINE-BLOCK
+- Explicar aos alunos que ao fazermos alterações dimensionais em <li>s essas configurações de propriedades da box (width, height, margin) são ignoradas quando aplicamos o modo de exibição inline 
+- os navegadores mais modernos permitem que usemos o momo inline-block na propriedade display, de modo que as especificações de dimensões são obedecida, e permite que os elementos sejam exibidos ao lado como lementos inline.
+
+EXERCÍCIOS - PAINÉIS FLUTUANTES
+
+
+SELETORES DE ATRIBUTOS DO CSS 4
+
+1. À partir daqui deve-se apresentar conteúdo de CSS mais avançados, como o SELETOR DE ATRIBUTOS:
+	- Valor de um atributo: input[value]{color:#CC0000} - o seletor altera todas as tags <input> que têm o atributo "value" 
+	- Valor específico: input[type="text"]{border-radius: 4px} 
+	- Selecionar valores condicionais, por exemplo, atributo com prefixo: div[class|="menu"]{border-radius: 4px;} - nesse caso, ele agirá em todas as tags <div> onde o atributo "div" comece com a palavra "menu" seguida de hífen e qualquer outro valor na sequência: menu-principa, menu-departamento, etc.
+	- Valor por palavra específica = input[value~="problema"], que seja unicamente esse nome na classe.
  
- 
+2. Explanar o uso de expressões no CSS3 que se assemelham às expressões regulares que conhecemos.
+Exemplificar:
+
+input[name^="usuario"]{color: #CCFF00} => busca por input com valor de "name" iniciando em "usuario"
+
+input[name$="teste"]{background-color: #CCFF00; => busca por input com valor de "name" terminandos em "teste"
+
+input[name*="tela"]{color: #666666; => busca por input com valor do atributo "name" contendo "tela" em qualquer posição
+
+- Mostrar que os valores de atributo tem a mesma especifidade dos seletores de classe.
 
 
+RODAPÉ - SEMÂNTICA HTML 5
 
-	 
+- Exemplificar o uso do <footer> na semântica do HTML 5
+- Fazer uso do Image Replacement - substituição por imagem (serve para exibir uma imagem em algum elemento que originalmente foi feito com texto. 
+	Ideia:
+	- Acertar o tamanho do elemento para ficar igual ao da imagem;
+	- Colocar a imagem como background do elemento;
+	- Esconder o texto.
 
+- Usar a técnica de esconder o texto cusando o 'text-ident' negativo alto, com isso fazer o texto ser renderizado "fora da tela".
 
+ESTILIZAÇÃO E POSICIONAMENTO DO RODAPÉ
 
+	Explicar que todo elemento que queremos manter uma largura padrão, teremos que usar a classe criada para isso: container
 
-
-
-
-
- 
+	1. CONTAINER INTEIRO
+	2. POSICIONAMENTO
 
