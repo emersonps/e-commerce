@@ -214,7 +214,7 @@ POSITION: STATIC, RELATIVE E ABSOLUTE
 
 1. Esplanar para os alunos os tipos de propriedades que permitem posicionar um elemento;
 2. Explicar que os objetos não obedecem essas propriedade, pois dependem de outra propriedade: position;
-3. Exemplificar que o position determina qual o mode de posicionamento de um elemento na qual ela pode receber: POSITION: STATIC, RELATIVE E ABSOLUTE;
+3. Exemplificar que o position determina qual o modo de posicionamento de um elemento na qual ele pode receber: POSITION: STATIC, RELATIVE E ABSOLUTE;
 
 	Explicação para a turma:
 - static => elemento com essa posição permanece com sua posição padrão, não obedecendo nenhum atributo de posicionamento;
@@ -229,11 +229,11 @@ Exemplo:
 - absolute => o mais complexo, pois exigem algumas regras que alteram seu comportamento em determinadas circustâncias. Por padrão, o elemento que recebe esse atributo usa como referência qualquer elemento que seja seu pai na estrutura HTML cujo o modo desse pai seja diferente de static (que é o padrão), e obedece as regras de coordenadas de acordo com o tamanho total desse elemento pai:
 	Regra 1 - Quando o elemento não tem um pai, ele usa como referência para as suas coordenadas o limite da página do lado direito e superior (conforme indicado no atributo left, right, top ou bottom).
 	Regra 2 - O mesmo acontece se definirmos a propriedade relative ao elemento pai, usando o elemento pai como base de referência para as suas coordenadas (superior e direita).
-	Regra 3 - caso o elemento pai não tenha uma position definida ou stati (padrão), o filho se comportará como na regra 1
+	Regra 3 - caso o elemento pai não tenha uma position definida ou static (padrão), o filho se comportará como na regra 1
 
 EXERCÍCIO DE POSICIONAMENTO
 
-SUPORT HTML5 NO INTERNET EXPLORER ANTIGO
+SUPORTE HTML5 NO INTERNET EXPLORER ANTIGO
 
 1. Mostrar aos alunos que somente há suporte para tags hmlt5 à partir do IE9.
 2. Se abrirmos o site em navegadores antigos, veremos a página com o conteúdo quebrado, pois o navegador não possui suporte para as tags semânticas do html5: header, footer, nav, section, etc.
@@ -382,4 +382,341 @@ ESTILIZAÇÃO E POSICIONAMENTO DO RODAPÉ
 
 	1. CONTAINER INTEIRO
 	2. POSICIONAMENTO
+
+>>>>>>PREPARAR AULA ATÉ AQUI <<<<<<<<
+
+SELETORES AVANÇADOS 
+
+1. SELETOR DE IRMÃOS (SUBLINGS)
+Utilizado para estilizar todo um parágrafo após um título.
+h2 ~ p {
+	font-style: italic;
+}
+
+
+2. SELETOR IRMÃO ADJACENTE
+Utilizado para selecionar o elemento imediatamente seguinte ao título por exemplo, ou seja, o <p> irmao do <h2>
+
+h2 + p {
+	font-variant: small-caps;
+}
+
+
+3. SELETOR FILHO DIRETO
+article > h1 {
+	color: blue;
+}
+
+
+4. SELETOR NEGAÇÃO
+Uma forma de selecionar um item em específico seria reestilizá-lo após uma aplicação de estilo padrão:
+p {
+	color: gray;
+}
+p.especial {
+	color: black; /* restaura cor do especial */
+}
+
+ou com CSS3 usando a tag de estilo NEGAÇÃO:
+p:not(.especial) {
+	color: gray;
+}
+
+a sintaxe not recebe outros tipos de seletores, além de classes, como: ids e tags.
+
+5. PSEUDO-CLASSES
+5.1. FIRST-CHILD e LAST-CHILD
+<ul>
+<li>Primeiro item</li> (QUEREMOS ESSE PRIMEIRO ELEMENTO VERMELHO)
+<li>Segundo item</li>
+<li>Terceiro item</li>
+<li>Quarto item</li> (QUEREMOS ESSE ÚLTIMO ELEMENTO AZUL)
+</ul>
+
+A solução mais comum seria:
+
+criar uma classe para cada um dos dois elementos e aplicar a cor, mas isso requer mudança no HTML, e precisaremos mudar sempre a classe no local da alteração.
+
+As duas classe utilizadas no CSS3 são: first-child (primeiro elemento do filho de outro) e last-child (último elemento filho):
+
+li:first-child {
+color: red;
+}
+li:last-child {
+color: blue;
+}
+
+
+Obs.: O suporte a esses seletores é completo nos navegadores modernos. O first-child vem desde o IE7, Firefox 3 e Chrome 4. E (estranhamente), o last-child só a partir do IE9 mas desde o Firefox 1 e Chrome 1.
+
+5.2. NTH-CHILD
+Seletor ainda mais genérico:
+	NTH-CHILD(ÍNDICE DO ELEMENTO FILHO){}
+
+O mesmo permite usar uma expressão aritimética para valores pares ou ímpares:
+/* elementos pares */
+li:nth-child(2n) { color: green; }
+
+/* elementos impares */
+li:nth-child(2n+1) { color: blue; }
+
+OBS.: O suporte existe a partir do IE9, Firefox 3.5 e Chrome 1.
+
+
+PSEUDO-CLASSES DE ESTADO
+Usamos para aplicar efeitos visuais que simulam ações de eventos do mouse sobre um objeto, invés de usarmos JS para esse tipo de efeito.
+
+a:hover {
+	background-color:#FF00FF;
+}
+
+/* seleciona todas as âncoras que têm o atributo "href", ou seja, links */
+a:link {
+background-color:#FF0000;
+}
+/* seleciona todos os links cujo valor de "href" é um endereço já visitado */
+a:visited {
+background-color:#00FF00;
+}
+/* seleciona o link no exato momento em que clicamos nele */
+a:active {
+background-color:#0000FF;
+}
+
+PSEUDO-ELEMENTOS
+No exemplo abaixo queremos alterar o tamanho e estilo apenas da letra 'A'. Para isso, ingenuamente, utilizaríamos uma classe <span>a</span>. Isso custaria mais trabalho de manutenção no HTML.
+<p>A Caelum tem os melhores cursos!</p>
+
+Pseudo-elementos são elementos que não existem no documento mas que podemo ser selecionados pelo CSS:
+
+p::first-letter {
+	font-size: 200%;
+}
+
+p::first-line {
+	font-style: italic;
+}
+
+
+Alterar somente a primeira linha dos parágrafo que não procede de outro parágrafo, mas sim procedidas por títulos, figuras e etc.
+
+:not(p) + p::first-line {
+    font-variant: small-caps;
+}
+
+
+NOVOS CONTEÚDOS
+Imagine uma lista de links que desejamos utilizar colchetes antes e depois de cada link:
+
+[ Link 1 ]
+[ Link 2 ]
+[ Link 3 ]
+
+Podemos simplesmente digitar esses valores na tela, então perguntamos:
+ - Será que esses valores serão semânticos? 
+ - Queremos que os colchetes sejam indexados no Google?
+ - Queremos que sejam lidos como parte de texto pelos leitores de tela
+
+Talvez não, por ser apenas um conteúdo visual. Podemos gerar os pseudo-elementos 'after' e 'before'
+
+a:before {
+	content: '[ ';
+}
+a:after {
+	content: ' ]';
+}
+
+Podemos também adicionar um conteúdo usando pseudo-elementos com seletores de atributos:
+a[href^=http//]:after {
+    content: ' (externo)';
+}
+
+BORDAS ARREDONDADAS
+
+/* todas as bordas arredondadas com um raio de 15px */
+.a {
+	border-radius: 15px;
+}
+
+/* borda superior esquerda e inferior direita com 5px
+borda superior direita e inferior esquerda com 20px */
+.b {
+	border-radius: 5px 20px;
+}
+
+/* borda superior esquerda com 5px
+borda superior direita e inferior esquerda com 20px
+borda inferior direita com 50px */
+.c {
+	border-radius: 5px 20px 50px;
+}
+
+/* borda superior esquerda com 5px
+borda superior direita com 20px
+borda inferior direita com 50px
+borda inferior esquerda com 100px */
+.d {
+	border-radius: 5px 20px 50px 100px;
+}
+
+
+TEXT-SHADOW
+1. Deslocamento da sombra e cor:
+p {
+	text-shadow: 10px 10px red;
+}
+
+2. Grau de Espelhamento: (blur)
+p {
+	text-shadow: 10px 10px 5px red;
+}
+
+3. Mais de uma sombra:
+p {
+	text-shadow: 10px 10px 5px red, -5px -5px 4px red;
+}
+
+BOX-SHADOW
+Sintaxe identica a do Text-shadow:
+	1. Sombra simples	
+	box-shadow: 20px 20px black;
+	
+	2. Sombra com blur
+	box-shadow: 20px 20px 20px black;
+
+	3. Aumentar e diminuir sombra
+	box-shadow: 20px 20px 20px 30px black;
+
+	4. Borda interna no elemento (inset)
+	box-shadow: inset 0 0 40px black;
+
+
+OPACIDADE E EGBA
+
+Desde o CSS2 podemos aplicar uma transparência em objetos usando a propriedade opacity usando valores que variam entre 0 e 1:
+p {
+	opacity: 0.3;
+}
+
+Compatíveis com todos o tipos de canais de cores:
+/* todos equivalentes */
+color: white;
+color: #FFFFFF;
+color: rgb(255, 255, 255);
+
+no CSS3 o modo rgb vem com um canal a mais de cores, que é o chamado de alpha, que na prática é como a propriedade de transparência do elemento:
+
+/* branco com 80% de opacidade */
+color: rgba(255,255,255, 0.8);
+
+No caso de texto queremos apenas o fundo dele transparente e não o texto junto:
+p {
+	background-color: rgba(0,0,0,0.3);
+	color: white;
+}
+
+
+CONCEITOS:
+
+PREFIXO:
+Muitos recursos do CSS3 e HTML5 ainda são experimentais, ou pelo menos eram há alguns anos atrás. As especificações ainda estão em aberto o que indica que pode levar algum tempo para que sejam fechadas.
+
+Alguns recursos são mais estáveis e outros mais instáveis. Alguns já estão há bastante tempo na espec e não são esperadas mudanças. Por fim, alguns ainda podem sofrer mudanças por serem bem recentes.
+
+Alguns navegadores utilizam recursos que, na prática, facilita o uso desses novos recursos até que sejam concluídos e os navegadores implementem essas novas propriedades.
+
+Enquanto isso, fazemos uso de um recurso chamado "prefixo" específico do fabricante na frente. Quando a especificação ficar instável, tira-se esse prefixo e usa apenas a propriedade (faz-se uso da sintaxe oficial):
+
+Alguns prefixos de fabricantes mais famosos são:
+-webkit-: navegadores Webkit (Chrome, Safari, iOS, Android)
+-moz-: Firefox (Mozilla)
+-ms-: Internet Explorer (Microsoft)
+-o-: Opera
+
+É preciso consultar tabelas de compatibilidade para saber qual navegador suporta qual propriedade e se é necessário usar prefixos para certas versões. Se quisermos o máximo de compatibilidade, precisamos colocar vários prefixos ao mesmo tempo:
+
+p {
+/* Chrome até versão 3, Safari até versão 4 */
+-webkit-border-radius: 5px;
+/* Firefox até versão 3.6 */
+-moz-border-radius: 5px;
+/* Todas as versões modernas dos navegadores,
+incluindo IE e Opera que nunca precisaram de
+prefixo pra isso */
+border-radius: 5px;
+}
+
+
+No caso do CSS3, todas as propriedades usadas até o momento são suportadas nos navegadores mais modernos: border-radius, text-shadow, box-shadow, rgba, e podem ser usados sem uso do prefixo.
+
+
+GRADIENTES
+Podemos usar gradientes no CSS3 sem que precisemos fazer uso de imagens.
+Vantagens:
+	- Simples
+	- Página mais leve
+	- Se adapta a todo tipo de resolução
+
+- Tipos: Lineares e Radiais
+
+- Sintaxe: 
+
+.linear {
+	background: linear-gradient(white, blue);
+}
+
+.radial {
+	background: radial-gradient(white, blue);
+}
+
+
+- Uso de gradiente com angulações diferentes e diversas paradas de cores:
+.gradiente {
+	background: linear-gradient(45deg, #F0F9FF 0%, #CBEBFF 47%, #A1DBFF 100%);
+}
+
+
+GERAÇÃO DE GRADIENTE
+No exemplo abaixo os navegadores mais modernos irão ignorar a cor sólida de ler a regra gradiente:
+
+.gradiente {
+	background: #CBEBFF;
+	background: linear-gradient(45deg, #F0F9FF 0%, #CBEBFF 47%, #A1DBFF 100%);
+}
+
+Podemos fazer uso de uma ferramente que permite gerar elementos gradientes em estilo visual:
+https://www.colorzilla.com/gradient-editor/
+
+
+PROGRESSIVE ENHANCEMENT E GRACEFUL DEGRADATION
+
+A ideia é fazer o site funcionar em qualquer navegador sem prejudicar os navegadores mais antigos e sem deixar de usar os novos recursos nos navegadores mais modernos.
+
+'Graceful Degratation' (degradação graciosa) - foi a primeira técnica que veio com essa ideia. O objetivo era montar o site voltado aos navegadores mais modernos e fazer com que ele degradasse "graciosamente", removendo funcionalidades não suportada.
+
+'Progressive Enhancement - tem uma ideia parecida, mas contrária. Desenvolve funcionalidades normalmente, a acrescenta-se pequenas melhorias mesmo que só funcione nos navegadores modernos. 
+
+o CSS3 usa esse último modo. Desenvolvemos com CSS3 e acrescentamos melhorias aos poucos.
+
+
+TRANSITIONS
+
+Propriedade que podemos usar para definição de estilos e efeitos:
+
+#teste {
+position: relative;
+	top: 10px;
+}
+
+#teste:hover {
+	top: 30px;
+}
+
+Mas veremos um efeito de deslocamento menos sutil. Podemos usar efeitos de transição:
+
+#teste:hover {
+	transition: top 2s;
+}
+
+Por padrão a animação é linear, mas podemos usar outros tipos:
 
