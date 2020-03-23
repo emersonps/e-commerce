@@ -214,7 +214,7 @@ POSITION: STATIC, RELATIVE E ABSOLUTE
 
 1. Esplanar para os alunos os tipos de propriedades que permitem posicionar um elemento;
 2. Explicar que os objetos não obedecem essas propriedade, pois dependem de outra propriedade: position;
-3. Exemplificar que o position determina qual o modo de posicionamento de um elemento na qual ele pode receber: POSITION: STATIC, RELATIVE E ABSOLUTE;
+3. Exemplificar que o position determina qual o modo de posicionamento de um elemento, na qual ele pode receber: POSITION: STATIC, RELATIVE E ABSOLUTE;
 
 	Explicação para a turma:
 - static => elemento com essa posição permanece com sua posição padrão, não obedecendo nenhum atributo de posicionamento;
@@ -701,7 +701,7 @@ o CSS3 usa esse último modo. Desenvolvemos com CSS3 e acrescentamos melhorias ao
 
 TRANSITIONS
 
-Propriedade que podemos usar para definição de estilos e efeitos:
+1. Propriedade que podemos usar para definição de estilos e efeitos:
 
 #teste {
 position: relative;
@@ -718,5 +718,295 @@ Mas veremos um efeito de deslocamento menos sutil. Podemos usar efeitos de trans
 	transition: top 2s;
 }
 
-Por padrão a animação é linear, mas podemos usar outros tipos:
+2. Por padrão a animação é linear, mas podemos usar outros tipos:
+	linear		-	velocidade constante na animação;
+	ease		-	redução	gradual	na velocidade da animação;
+	ease-in		- aumento gradual na velocidade da animação;
+	ease-in-out  	- aumento gradual, depois redução gradual na velocidade da animação;
+	cubic-bezier(x1,y1,x2,y2) - curva de velocidade para animação customizada (avançado)
+
+3. Transition Color:
+
+#teste{
+	position:relative;
+	top: 10px;
+	color: white;
+}
+
+#teste:hover{
+	top: 30px;
+	color: red;
+	transition: top 2s, color 1s ease;		
+}
+
+Podemos usar o atalho "All" para aplicar a mesma animação em todas as propriedade (que já é padrão):
+	transition: all 1s ease;
+
+
+ESPECIFICAÇÃO TRANSFORMS
+Com esta especifiação podemos usar propriedades visuais dos elementos antes impossíveis. Por exemplo, agora podemos alterar o ângulo de um elemento, mostrar em escala maior ou menor que seu tamanho padrão ou alterar a posição do elemento sem alterar a sua estrutura.
+
+1. Translate:
+.header	{
+    /*	Move	o	elemento	no	eixo	horizontal	*/
+    transform:	translateX(50px);
+}
+
+#main	{
+    /*	Move	o	elemento	no	eixo	vertical	*/
+    transform:	translateY(-20px);
+}
+
+footer	{
+    /*	Move	o	elemento	nos	dois	eixos	(X,	Y)	*/
+    transform:	translate(40px,	-20px);
+}
+
+2. Rotate
+
+.quadrado{
+    width: 200px;
+    height: 200px;
+    background: chocolate;
+    transform:	rotate(-20deg);
+}
+
+
+3. Scale
+#novidades li	{
+    /*	Alterar a escala total do elemento */
+    transform:	scale(1.2);
+}
+
+#mais-vendidos li	{
+    /*	Alterar	a escala vertical e horizontal do elemento */
+    transform:	scale(1, 0.6);
+}
+
+4. Skew
+footer	{
+	/*Distorcer o elemento no eixo horizontal */
+	transform: skewX(10deg);
+}
+
+#social	{
+	/*Distorcer o elemento no eixo vertical	*/
+	transform: skewY(10deg);
+}
+
+- É possível combinar várias transformações no mesmo elemento:
+html{
+	transform: rotate(-30deg) scale(0.4);
+}
+
+
+ESPECIFICIDADE DE SELETORES CSS
+
+O comportamento padrão dos seletores, quando não há conflitos entre propriedades, é que as propriedades sejam acomulativas. Em caso de conflito, entre propriedades de seletores equivalentes, ou até em um mesmo seletor, é aplicada a propriedade declarada depois:
+
+<p>Texto do parágrafo em destaque</p>
+<p>Texto de um parágrafo comum</p>
+
+1. Declaração sem conflito, propriedades declaradas acumuladas:
+
+p {
+    color: navy;
+}
+
+p {
+    font-size: 16px;
+}
+
+Declaração com conflito, última propriedades declarada:
+p {
+    color: navy; <- continua aplicando 
+    font-size: 12px; <- será anulada se declarada posteriormente por outro valor
+}
+
+p {
+    font-size: 16px; <- valor que sobrescreverá, se houver algun valor antes declarado.
+}
+
+
+2. Seletor de Tag:
+div {} - seletor genérico (toda tag div receberá os valores de atributos especificados aqui).
+
+3. Seletor de Class:
+.destaque{ } - seletor um pouco mais específico (decidimos quais elementos receberá os valores especificados aqui). O valor especificado aqui é maior que o valor de Seletor de Class.
+
+4. Seletor de Id:
+#destaque{ } - seletor bem específico (só pode ter um único elemento que receberá os valores específicados aqui). A especificidade do seletor Id é maior que o valor do Seletor de Class e Seletor de Tag.
+
+ESPECIFICADADE
+Podemos adicionar um ponto em cada posição do valor de um seletor para chegarmos ao seu valor de especificidade:
+
+Podemos usar uma tabela para ajudar no reconhecimento desses valores:
+
+VALORES DE ESPECIFICADE DE SELETORES
+-------------------------------------------------------------------------
+Seletor de ID			|  Seletor de Classe	     	|  Seletor de Tag   
+Ex.: #rodape{font-size: 11pt}  	|  ex.: .conteudo{width: 960px}	|  ex.: div{color:green}
+	1				      1				  1
+
+	Seguindo os valores de especifidade da tabela acima, podemos calcular os valores de especifidade para qualquer CSS, por exemplo:
+
+p{/*valor de especificidade: 001*/
+	color: blue;
+}
+
+.destaque{/*valor de especificidade: 010 */
+	color: red;
+}
+#cabecalho{/*valor de especificidade: 100 */
+	color: green;
+}
+
+	Nos seletores combinados ou compostos, basta somar os valores em suas determinadas posições:
+
+#rodape p{/* valor de especificidade: 101 */
+	font-size: 11px;
+}
+
+#cabecalho .conteudo h1	{/* valor de especificidade 111	*/
+	color: green;
+}
+
+.conteudo div p span{/* valor de especificidade: 013 */
+	font-size: 13px;
+}
+
+	Quando maior a propriedade do seletor, maior é a propriedado do seu valor, dessa maneira o valor de especificidade 013 sobrescreve as propriedades conflitantes para o mesmo elemento que um seletor com o valor de especificidade 001.
+	Essa é a maneira simples de descobrir qual seletor tem sua propriedade aplicadas com maior propriedade.
+
+Nos limitaremos apenas nesses três, por hora.
+
+
+WEB PARA DISPOSITIVOS MÓVEIS
+
+SITE MOBILE OU MESMO SITE?
+
+Fazer um site específico para dispositivos móveis ou fazer um site que se ajuste a qualquer dispositivo?
+
+Web Única (One Web) - A melhor experiência para os usuários é ter o mesmo site Desktop normal também acessível no mundo móvel. 
+
+CSS MEDIA TYPES
+
+Há um tempo atrás havia uma preocupação com o layout de digerentes dispositivos, desde a época do CSS2. Para resolver esse tipo de problemas usava-se o recurso chamado de Media Type. Declarávamos as chamadas de cada arquivo de folha de estilo no head da página, como chamamos o css hoje, mas usávamos três chamadas para cada tipo ou criava tudo junto no mesmo arquivo de folha de estilo.
+
+
+<link	rel="stylesheet" href="site.css" media="screen"	/>
+<link	rel="stylesheet" href="print.css" media="print"	/>
+<link	rel="stylesheet" href="handheld.css" media="handheld"	/>
+
+Ou:
+
+@media screen{
+	body{
+		background-color: blue;
+		color:	white;
+	}
+}
+
+@media print{
+	body{
+		background-color: white;
+		color:	black;
+	}
+}
+
+MEDIA TYPE SCREEN & MEDIA TYPE PRINT
+Esse recurso, "media type screen", deternima a visualização normal no desktop. Era comum também fazer uso do "media type print", que permitia formatar recursos tipo textos e como seriam exibidos na impressão.
+
+HANDHELD
+Havia também o "handheld", voltado para dispositivos móveis. 
+O problema era que os dispositivos na época eram simples (celulares wap e palmtops) e muito limitados. Era usado para páginas bem simples.
+
+SCREEN
+Quando começaram a surgir os novos smartphones, eles eram capazes de abrir páginas mais complexas, como o próprio desktop, por exemplo o IPhone. Por isso, o IPhone e outros celulares modernos ignoram o uso dos "handheld", e consideram, na verdade, "screen". 
+
+A solução veio com o CSS3:
+
+Todos os smartphones e navegadores modernos suportam uma nova forma de adaptar o CSS baseado nas propriedades dos dispositivos, as "media queries" do CSS3.
+
+Invés de indicarmos que um determinado CSS é para um "handheld" em geral, podemos indicar que determinadas regras do CSS devem ser vinculadas a propriedades dispositivo como tamanho de tela, orientação (landscape ou protrait) e até resolução em dpi:
+
+<link rel="stylesheet" href="base.css" media="screen">
+<link rel="stylesheet" href="mobile.css" media="(max-width: 480px)">
+
+Ou separar as regras dentro do mesmo CSS:
+
+@media screen{
+	body{
+		font-size: 16px;
+	}
+}
+
+@media(max-width:480px)	{
+	body{
+		font-size: 12px;
+	}
+}
+
+
+o Atributo "media" agora recepe expressões mais complexas. Com isso, podemos definir o tamanho da fonte que queremos em uma determinada dimensão da tela em pixels por exemplo.
+
+VIEWPORT - área de conteúdo dos smartphones. Área que abrange todo o conteúdo do site como no desktop.
+
+Se tentarmos ver a página com as regras do exemplo de media screen anterior, veremos que nossa página é exibida como no desktop. Parece que as regras do "max-width" são ignoradas pelos dispositivos móveis. - Exatamento porque o Viewport considrea a área dos smartphones igual a do desktop, suportando todo o conteúdo do site assim como no desktop. 
+
+Na verdades é que os smartphones tem telas grandes e resoluções altas, justamente para poder visualizar sites complexos feitos para desktop. A tela de um IPhone4, por exemplo, é formada por 960px por 640px. Celulares Androids já chegam a 1280px, o mesmo de um Dektop.
+
+Ainda assim a experiência dos desktops são bem diferentes dos smartphones: 
+1280px em uma tela de 4 polegadas é bem diferente de 1280px em um notebook de 13 polegadas. A resolução muda. Celulares costumam ter resolução em DPI bem maior que desktops.
+
+DPI = (pixel por polegada)
+
+Desktop = 1280px - dpi normal
+Smartphone = 1280px - dpi superior ao desktop
+
+
+DEVICE-WIDTH - define um padrão de pixels (dpi) padrão do frabricante do smartphone. 
+ 
+Os smartphones sabem que considerar a tela com 1280px não ajudará o usuário a visualizar a página otimizadas para telas menores. Há então o conceito de "device-width" que, resumidamente, representa um número em pixels que o fabricante do aparelho considera como mais próximo da sensação que o usuário tem ao visualizar a tela.
+
+Nos Iphones, por exemplo, o "device-width" é considerado como 320px, mesmo com a tela tendo a resolução bem mais alta.
+
+Por padrão os IPhones e Androids costumam considerar o tamanho da tela visível, chamada de "viewport", como grande o suficiente para comportar os sites desktops normais. Por isso, no exemplo de @media, a nossa página foi exibida como se estivéssemos no desktop.
+
+Por isso declaramos a tag: <meta name="viewport" content="width=device-width"> dentro da página index.
+
+O que acontece quando a resolução for maior que 320px?
+
+Nosso design volta a 940px e o scroll fica horizontal. A maioria dos smartphones tem 320px de largura, mas nem todos, e o nosso layout não se ajusta bem a esses outros. Quando giramos o aparelho a resolução passa a ser (480px no Iphone e mais de 500px em muitos Androids).
+
+O melhor seria deixar nossas configurações entre 320px e 940px que estabelecemos para o site desktop.
+
+Como fizemos um "layout fluido", baseado em porcentagens, os elementos se ajustam a diferentes resoluções sem esforços. É uma boa prática usar porcentagens, e sempre que possível, evitar o uso de valores absolutos em pixels.
+
+RESPONSIVE WEB DESIGN
+
+Ess prática aplicada, chamamos de "Web Desing Responsivo". O termo surgiu no famos artigo de Ethan Marcotte e diz exatamente o que acabamos de praticar. 
+
+3 ELEMENTOS DE UM SITE RESPONSIVO
+
+1. Layout fluido, usando medidas flexíveis, como porcentagens;
+2. media queries para ajuste de design
+3. Uso de imagens flexíveis.
+
+A ideia do responsivo é que a página se adapte a diferentes resoluções. Embora o uso das procentagens seja uma prática antiga, foi a popularização dos "media queries" que permitiram layouts verdadeiramente adaptativos.
+
+MOBILE-FIRST
+
+Nosso layout até agora tem sido desenvolvido pensando primeiro no desktop e depois fizemos alguns ajustes, que por sinal, modificaram alguns propriedades que já havíamos feito. Na prática, isso não é muito interessante. 
+É muito mais comum e recomendado o uso da prática inversa: "mobile-first". Isto é, começar o desenvolvimento pelo mobile e, depois, adicionar suporte a layout desktop.
+Ma prática, usaremos mais media-queries, mais min-width ao invés de max-width, mais comum em códigos desktop-first.
+
+1. Inicia-se o desenvolvimento pela área mais simples, com mais restrições, o mobile.
+2. O uso da tela mais simples vai nos forçar a criar página mais simples, focada e objetiva.
+3. Depois, com medias queries, readaptar o layout para desktop. 
+
+A abordagem Dektop-first começa pelo ambiente mais livre e vai tentando cortar coisas quando chega no mobile. Na prática, é muito mais trabalhosa essa prática.
+
+PROGRESSIVE ENHACEMENT E MOBILE-FIRST
+ 
 
