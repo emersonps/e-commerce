@@ -1009,4 +1009,93 @@ A abordagem Dektop-first começa pelo ambiente mais livre e vai tentando cortar c
 
 PROGRESSIVE ENHACEMENT E MOBILE-FIRST
  
+Criando um form para a página compras:
+
+Semanticamente, usaremos um componente html que nos permite adicionar uma legenda e os componentes do form em seguida <fieldset> </fieldset>que vem acompanhado do <legend></legend>
+
+Ex.:
+<form>
+	<fieldset>
+		<legend>Escolha	a cor</legend>
+		<input	type="radio" name="cor" id="verde">
+		<label	for="verde">Verde</label>
+		<input	type="radio" name="cor" id="rosa">
+		<label	for="rosa">Rosa</label>	
+		<input	type="radio" name="cor" id="azul">
+		<label	for="azul">Azul</label>
+	</fieldset>
+	<button	class="comprar">Comprar</button>
+</form>
+
+Desenvolver um site pensando na seguinte estrutura:
+
+1. O Html - Sua função é estruturar o conteúdo da página de uma maneira semântica e acessível, provendo uma base de funcionalidades para a página sem relação imediata com o visual;
+
+2. O CSS - e o visual dele são uma segunda camada, que vem em cima do HTML semântico e bem construído. 
+
+3. Java Script  - Necessário para implementar outros recursos da página, não sendo obrigatório seu uso.
+
+Esse tipo de pensamento é chamado de Progressive Enhacement - Construir uma base sólida, simples, portável e acessível e, depois, progressivamente, incrementar a página com recursos mais avançados tanto de estilo com CSS quanto de comportamento com JavaScript.
+
+
+BOX MODEL E BOX-SIZING
+
+Box Model padrão do W3C
+
+Quando alteramos a propriedade de elementos dentro de uma página, precisamos pensar no comportamento desses elementos na presente um do outro.
+Uma forma de entender o impacto causado pela mudança é pensar no box model.
+
+1. Box Model - É constituído por quatro áreas retangulares: conteúdo(content), espaçamento(padding), bordas(border) e margens(margin), conforme imagem:
+
+|------------------------------------------------|
+|		    Margin 			 |
+|  |---------------------------------------|	 |
+|  | |--------------Border---------------| |     |
+|  | |	|---------------------------|	 | | 	 |
+|  | |	|	    Padding	    |	 | |	 |
+|  | |	|    |-----------------|    |	 | |	 |
+|  | |	|    |      Content    |    |    | |     |
+|  | |	|    |-----------------|    |    | |     |
+|  | |	|                           |    | |     |
+|  | |  |---------------------------|	 | |	 |
+|  | |-----------------------------------| |	 |
+|  |---------------------------------------|     |
+|						 |
+|------------------------------------------------|
+
+
+Essas áreas se desenvolvem de dentro para fora, na ordem abaix:
+
+Conteúdo (content) - aquilo que será exibido;
+Espaçamento (padding) - distância entre a borda e o conteúdo;
+Borda  (border) - Quatro linhas que envolvem a caixa (box);
+Margem (margin) - distância que separa um box de outro;
+
+Tendo em mente o "box model", precisamos ter atenção na alteração de propriedades de um elemento visualizando o impacto em sua apresentação ao lidar com as propriedades listadas acima. 
+
+2. Box-sizing 
+
+Por padrão, todos os elementos têm o valor 'box-sizing: content-box' o que significa que o tamanho dele é definido pelo seu conteúdo apenas -- em outras palavras, é o tal box model padrão que vimos antes. Mas podemos trocar por 'box-sizing: border-box' que indica que o tamanho agora levará em conta até a borda - ou seja, o 'width' será a soma do 'content' com a 'border' e o 'padding'
+
+Ou seja, o tamanho da forma é somado com o tamanho da borda, em outras palavras, a borda cresce pra dentro da forma.
+
+
+Obs.: Ao desenvolver mobile-first, usamos muitas media queries do tipo 'min-width' para implementar as mudanças para o tablet/desktop.
+
+MEDIAS QUERIES - QUERIES DE CONTEÚDO
+
+O valor que colocamos dentro dos medias queries são chamados de "breakpoints", os pontos onde o layout será ajustado no site por causa de uma resolução diferente. 
+
+Design responsivo questiona o seguinte:
+Quais os valores padrões a se colocar nos media queries?
+320px, 480px, 600px, 768px, 992px, 1200px (chamamos isso de "device-driven breakpoint") - são valores gerados a partir de tamanhos de dispositivos.   
+
+Devemos evitar essa lista de breakpoint, essa lista tráz uma meia dúzia de dispositivos, mas não atende todos (e os 360px de um Galaxy S4?). 
+Usar esses valores garante apenas que a responsividade funcionará nos dispositivos específicos, nos dispositivos "padrões".
+
+Dar preferência aos nossos breakpoints com valores baseados em nosso conteúdo, garante que nossa página funcione em todos os dispositivos.
+
+Na prática, podemos redimensionar a janela e anotar os valores (quebrados ou não) onde o layout quebre ou fique feio, à partir daí, fazer os próprios breakpoints.
+
+
 
