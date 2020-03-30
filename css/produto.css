@@ -1,36 +1,36 @@
 .cores label::after	{
     content: '';
-    display:	block;
+    display: block;
     border-radius: 50%;
     width: 50px;
     height: 50px;
 }
 
-label[for=verde]::after	{
+label[for=verde]::after {
     background-color: #33CC66;
 }
 
-label[for=rosa]::after	{
+label[for=rosa]::after {
     background-color: #FF6666;
 }
 
-label[for=azul]::after	{
+label[for=azul]::after {
     background-color: #6666FF;
 }
 
-.cores input:checked + label::after {
-    border: 6px	solid	rgba(0,0,0,0.3);
+.cores input:checked + label::after	{
+    border: 6px	solid rgba(0,0,0,0.3);
 }
 
 .cores label::after	{
     box-sizing:	border-box;
 }
 
-.cores input[type=radio]	{
-    display:	none;
+.cores input[type=radio] {
+    display: none;
 }
 
-.cores input:not(:checked) + label img{
+.cores input:not(:checked) + label img {
     display: none;
 }
 
@@ -39,8 +39,8 @@ label[for=azul]::after	{
     top: 30px;
 }
 
-.cores	{
-    position: relative;
+.cores {
+    position:	relative;
     padding-top: 90px;
 }
 
@@ -48,11 +48,11 @@ label[for=verde]::after	{
     left: 0;
 }
 
-label[for=rosa]::after	{
+label[for=rosa]::after {
     left: 60px;
 }
 
-label[for=azul]::after	{
+label[for=azul]::after {
     left: 120px;
 }
 
@@ -71,7 +71,7 @@ label[for=azul]::after	{
     font-size: 1.8em;
     font-weight: bold;
 }
-.produto p	{
+.produto p {
     font-size: 1.2em;
     font-style:	italic;
     margin-bottom: 1em;
@@ -90,7 +90,7 @@ label[for=azul]::after	{
     font-size: 1.4em;
     text-transform:	uppercase;
     box-shadow: 0 1px 3px #777;
-    display:	block;
+    display: block;
     padding: 0.5em 1em;
     margin: 1em 0;
 }
@@ -101,17 +101,14 @@ label[for=azul]::after	{
 }
 
 .cores label:hover::after {
-    border: 6px	solid	rgba(0,0,0,0.1);
+    border: 6px	solid rgba(0,0,0,0.1);
 }
 
 .cores label::after	{
     cursor:	pointer;
 }
 
-@media	(min-width:	600px)	{
-    img	{
-        float:	left;
-    }
+@media	(min-width:	600px) {
 
     .cores label img {
         max-width: 35%;
@@ -125,39 +122,48 @@ label[for=azul]::after	{
     .cores label::after	{
         margin-right: 10px;
     }
-
-    fieldset {
-        display:	inline-block;
-        vertical-align:	top;
-        margin: 1em 0;
-        min-width: 240px;
-        width: 45%;
-    }
 }
 
-@media	(min-width:	630px)	{
+
+@media	(min-width:	630px) {
     .produto {
+        /*	a	foto	vai	se	posicionar	absolutamente	com	relação	a	esse	elemento,
+        por	isso	preciso	estar	posicionado	*/
         position:	relative;
+        /*	deixar	40%	de	espaço	em	branco	na	esquerda	para	foto	ocupar	*/
         padding-left: 40%;
     }
-
     .cores	{
-        position:	static;
+        /*	estava	relative	antes;	reinicio	para	static	para	evitar	que	a	foto	se	posicione	com	relaçã
+o	a	mim	*/
+        position: static;
+        /*	zerando	o	padding-top	que	tinha	antes	e	não	preciso	mais	*/
         padding: 0;
     }
     .cores legend {
+        /*	estava	absolute	antes,	para	ter	o	mesmo	comportamento	no	Chrome	e	no	Firefox;
+        agora	podemos	voltar	ao	fluxo	da	página	*/
         position:	static;
     }
     .cores label img {
+        /*	imagem	se	posiciona	absolutamente	à	esquerda	com	relação	ao	.produto	*/
         position:	absolute;
         top: 0;
         left: 0;
     }
-
-    .cores label:after	{
+    .cores label:after {
+        /*	as	bolinhas	coloridas	tinham	posição	absoluta	e	não	precisamos	mais,
+        basta	flutuar	uma	do	lado	da	outra	*/
         position:	static;
         float:	left;
-        margin-right: 10px;
+    }
+
+    fieldset {
+        display: inline-block;
+        vertical-align:	top;
+        margin: 1em 0;
+        min-width: 240px;
+        width: 45%;
     }
 }
 
@@ -177,7 +183,7 @@ detalhes {
     max-width: 36em;
 }
 
-@media (min-width:	500px)	{
+@media (min-width:	500px) {
     .detalhes	{
         font-size: 1.2em;
     }
@@ -185,23 +191,27 @@ detalhes {
 
 table	{
     border-spacing: 0.2em;
-    border-collapse:	separate;
+    border-collapse: separate;
 }
-thead	{
+thead{
     background-color: #999;
 }
-thead th	{
-    font-weight:	bold;
+
+thead th {
+    font-weight: bold;
     padding: 0.3em 1em;
     text-align:	center;
 }
-td	{
+
+td {
     padding: 0.3em;
 }
-tr:nth-child(2n)	{
+
+tr:nth-child(2n) {
     background-color: #CCC;
 }
-td:first-child	{
+
+td:first-child {
     font-style:	italic;
 }
 

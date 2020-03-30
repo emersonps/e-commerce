@@ -1098,4 +1098,208 @@ Dar preferência aos nossos breakpoints com valores baseados em nosso conteúdo, g
 Na prática, podemos redimensionar a janela e anotar os valores (quebrados ou não) onde o layout quebre ou fique feio, à partir daí, fazer os próprios breakpoints.
 
 
+BOOTSTRAP E FRAMEWORK CSS
+
+FORMULÁRIO
+1. Atributos do Form: 
+<form action="/efetivar.html" method="POST"></form>
+
+Atributos:
+ - action: Obrigatório. Esse atributo é o endereço para onde enviaremos os valores dos campos que estiverem dentro desse formulário. Como esses valores são recebidos, depende de como é feita a aplicação do lado do servidor.
+
+ - method: Especifica o método HTTP pelo qual essa informação será transmitida. 
+	Valores:
+	- POST: de maneira simplista, significa que queremos inserir as informações desse formulário, salvá-la de alguma maneira.
+	- GET: é utilizado quando queremos obter alguma coisa a partir das informações que estamos transmitindo, por exemplo, um formulário de busca.
+  
+Compotentes do Form:
+ - Label: é ligado ao <input> através do atributo "for" com o nome do input:
+Ex.: 	<label for="nome">Nome:</label>
+	<input type="text" name="nome" id="nome">
+
+Dessa forma quando clicamos no label, o acampo interligado será ativado para que possamos interagir com ele.
+
+ - Input: Tipos (type)
+	- text: 
+		<input	type="text" name="nome_usuario">
+	- password: 
+		<input	type="password" name="senha">
+	- checkbox: 
+		<input	id="contrato" name="contrato" type="checkbox" value="sim">
+		<label	for="contrato">Aceito	os	termos	do	contrato.</label>
+	- radio:
+		<input	type="radio" name="idade" id="idade5" value="5">
+		<label	for="idade5">Menos	de	5	anos</label>
+		<input	type="radio" name="idade" id="idade10" value="10">
+		<label	for="idade10">Menos	de	10	anos</label>
+		<input	type="radio" name="idade" id="idade15" value="15">
+		<label	for="idade15">Menos	de	15	anos</label>
+		<input	type="radio" name="idade" id="idade20" value="20">
+		<label	for="idade20">Menos	de	20	anos</label>
+	- image:
+		<input	type="image" name="botao" src="images/enviar.png" alt="Botão para enviar o formulário" width="20" height="18">
+	- file:
+		<input	type="file" name="anexo">
+	- hidden:
+		<input	type="hidden" name="codigo" value="abc012xyz789">
+	- button:
+		<input	type="button" name="mostra_dialogo" value="Clique aqui!">
+	- submit:
+		<input	type="submit" name="enviar" value="Enviar">
+	- reset:
+		<input	type="reset" name="reset" value="Limpar">
+
+	- textarea: 
+		<textarea name="texto"></textarea>
+	- Select, Optgroup e Option:
+		- Estilo menu dropdown (seleciona uma opção):
+		<select	name="cidades">
+			<option	value="bsb">Brasília</option>
+			<option	value="rj">Rio	de	Janeiro</option>
+			<option	value="sp">São	Paulo</option>
+		</select>
+		
+		- Estilo multipla seleção:
+		<select	name="cidades" multiple>
+			<option	value="bsb">Brasília</option>
+			<option	value="rj">Rio	de	Janeiro</option>
+			<option	value="sp">São	Paulo</option>
+		</select>
+			
+		Caso necessário, dependendo do número de opções apresentadas ao usuário, pode ser interessante agrupá-las:
+		<select	name="bairro">
+			<optgroup label="Brasília">
+				<option	value="asan_bsb">Asa Norte</option>
+				<option	value="asas_bsb">Asa Sul</option>
+			</optgroup>
+			
+			<optgroup label="Rio de Janeiro">
+				<option	value="botafogo_rj">Botafogo</option>
+				<option	value="centro_rj">Centro</option>
+			</optgroup>
+
+			<optgroup label="São Paulo">
+				<option	value="vlmariana_sp">Vila Mariana</option>
+				<option	value="centro_sp">Centro</option>
+			</optgroup>
+		</select>
+
+NOVOS COMPONENTES HTML 5
+Button types:
+	- email - exibe teclado ou pções de e-mail nos smartphones:
+		<input	type="number" max="100" step="5">
+	- number - exibe um campo com setas para encrementar ou decrementar valor do campo, e valores múltiplos:
+		<input type="number" max="100" step="5">
+	- url - exibe teclado com opções para e-mail (www, .com. etc)
+		<input type="url" name="endereco">
+	- range - exibe controle deslizante para uso de valores numéricos em escala.
+		<input	type="range" name="volume">
+	- date, month, week, time, datetime e datetime-local - "date picker" são feitos para coletar uma informação de data e hora:
+		<input	type="date" name="validade">
+	- color - exibe um espectro (color picker) para seleção de cor:
+		<input	type="color" name="cor_olhos">
+	- search - Exibe um campo específico para busca. O atributo "results" determina quantas últimas buscas armazenadas e lembradas. Além de exibir uma lupa dentro do campo (Chrome e Safari).
+		<input	type="search" results="10">
+	- tel - coleta um número de telefone, permite usar teclados com informações relevantes apenas a esse tipo de entrada:
+		<input	type="tel" name="telefone">
+
+
+NOVOS ATRIBUTOS HTML 5 DENTRO DE ELEMENTOS DE FORMULÁRIO
+
+	- autofocus - indica que aquele campo deve ser iniciado com o foco quando a página for carregada. 
+		<input	type="text" name="nome" autofocus>
+
+	- placeholder - exibe um texto informativo dentro do campo caso ele esteja vazio.
+		<input type="text" name="nome" placeholder="Insira seu nome">
+
+	- autocomplete, list e datalist - permite implementar uma funcionalidade de sugestão de valores para autocompletar um campo:
+		<input type="text" list="cidades" autocomplete="on">
+		<datalist id="cidades">
+			<option	value="Brasília">
+			<option	value="Rio de Janeiro">
+			<option	value="São Paulo">
+		</datalist>
+	Obs.: Sem o list definido, mas com o automplete ligado, o campo exibirá dados digitados em outros campos para complementá-lo.
+
+	
+ÍCONES
+	Biblioteca para ícones:
+
+	- Font Awesome
+	- Iconic
+	- Octicons
+
+VALIDAÇÕES
+	- required - validação fraca, do lado cliente.
+	- pattern - definimos entrada de valores através de expressões.
+		- <input type="text" pattern="^@\w{2,}" name="usuario_twitter">
+	
+	1. Estilizando campo quando o valor for inválido: usando pseudo código:
+		.form-control:invalid{
+			border: 1px solid #CC0000;
+		}
+
+GRID RESPONSIVO DO CSS
+Para facilitar o posicionamento de objetos foi desenvolvido um método, que facilita o uso de design multi coluna, chamado de grid. Os frameworks CSS, geralmente, possuem os grids prontos para utilização, pois já vem com as classes prontas. Basta usar as classes certas.
+O Bootstrap possui várias dessas classes prontas.
+
+O grid Bootstrap trabalha com o conceito de 12 colunas, permitindo escrever o código escolhendo quantas colunas nós queremos ocupar:
+
+| .col-md-1 | .col-md-1 | .col-md-1 | .col-md-1 | .col-md-1 | .col-md-1 |.col-md-1 | .col-md-1 | .col-md-1 | .col-md-1 | .col-md-1 | .col-md-1 | 
+| .col-md-8                                                                                    | .col-md-4                                     |
+| .col-md-4                                     | .col-md-4                                    | .col-md-4                                     |
+| .col-md-6                                                             | .col-md-6                                                            |
+
+
+<div class="row">
+	<div class="col-md-4">
+		div ocupa 4/12
+	</div>
+	<div class="col-md-8">
+		div ocupa 8/12
+	</div>
+</div>
+
+a class Row é necessária para que o layout funcione corretarmente:
+
+- Podemos criar grids dentro de grid, sempre obedecendo a divisão de 12 colunas:
+
+<div class="row">
+	<div class="col-md-4">
+		...
+	</div>
+	
+	<div class="col-md-8">
+		<div class="row">
+			<div class="col-md-6">
+				...
+			</div>
+			<div class="col-md-6">
+				...
+			</div>
+		</div>
+	</div>
+</div>
+
+- RESPONSIVIDADE DO GRID:
+
+col-	:	Extra	small	<	576px
+col-sm-	:	Small	>=	576px
+col-md-	:	Medium	>=	768px
+col-lg-	:	Large	>=	992px
+col-xl-	:	Extra	large	>=	1200px 
+
+Podemos aplicar mais de uma classe no mesmo elemento:
+
+<div class="row">
+	<div class="col-xs-6 col-sm-4">
+		...
+	</div>
+	<div class="col-xs-6 col-sm-8">
+		...
+	</div>
+</div>
+
+
+
 
