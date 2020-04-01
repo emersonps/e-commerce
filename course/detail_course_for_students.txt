@@ -1300,6 +1300,177 @@ Podemos aplicar mais de uma classe no mesmo elemento:
 	</div>
 </div>
 
+DADOS CUSTOMIZADOS HTML 5
+
+	Até o HTML 4, não havia uma forma padronizada de colocar atributos customizados. 
+À partir do HTML 5, atributos começando com "data-" em qualquer tab são considerados atributos customizados e não quebram a validade do HTML. Esses atributos são bastante úteis para passar informações como para um código Java Script.
+
+	<button	class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent">
 
 
+OUTROS FRAMEWORKS CSS
 
+	- Foundation - Da Zurb, fortemente baseado em mobile e responsivo. http://foundation.zurb.com/
+	- Semantic UI - Tem nomes de classes mais simples e semânticos que os outros. http://semanticui.com/
+	- Pure - Do Yahoo, outra alternativa, mais recente. http://purecss.io/
+
+
+Exemplos:
+
+<!-- Bootstrap -->
+	<button	class="btn btn-primary btn-lg">Clique aqui</button>
+
+<!-- Foundation -->
+	<button	class="large button">Clique aqui</button>
+
+<!-- Semantic UI -->
+	<button	class="large ui button">Clique aqui</button>
+
+<!-- Pure -->
+	<button class="pure-button pure-button-primary pure-button-large">
+		Clique	aqui
+	</button>
+
+
+JAVA SCRIPT E INTERATIVIDADE NA WEB
+
+<output> - essa tag representa a saída de algum cálculo ou valor simples obtido a partir de um ou mais campos de um formulário. Ele possui um atributo for que aponta de qual elemento saiu o seu valor.
+
+	<output	for="tamanho" name="valortamanho">42</output>
+
+Basicamente é como se fosse uma div simples, podendo ser formatada futuramente. A grande sacada é o valor semântico da tag e o que ela representa.
+
+Usaremos esse componente para vincular a alteração feita na barra deslizante de (tamanho) para que esse valor seja modificado conforme deslizamos o componente.
+
+Mudar o conteúdo de uma tag conforme o usuário modifica o valor no componente, não é função do HTML, por isso, usamos o Java Script.
+
+HISTÓRIA DO JAVA SCRIPT
+- Tudo começou com a necessidade de ter que tornar as páginas de navegação na internet mais dinâmicas, ou seja, uma interação maior com o usuário com as páginas. 
+- Entra a Netscape, a criadora do navegador mais popular do mundo nos anos 90, de mesmo nome, criou o LiveScript, uma linguagem simples que permitia o uso de scripts dentro da própria página.
+- No mesmo instante em que Java crescia no mercado, a Netscape logo rebatizou o LiveScript como JavaScript num acordo com a Sun para alavancar as duas.
+- Foi quando, a atual líder do mercado, Microsoft, adicionou ao Internet Explorer o suporte a script escritos em VBScript e criou sua própria versão de JavaScript, o JScript.
+
+CARACTERÍSTICAS DO JS
+- O JavaScript, é uma linguagem de 'scripting'
+- Linguagem Scripting é uma linguagem que permite controlar uma ou mais aplicações de terceiros.
+- Normalmente, elas são linguagens 'interpretadas', ou seja, precisam ser compiladas. No navegador, o código é lido e intrepretado conforme é lido pelo navegador, linha à linha, conforme o HTML.
+- JavaScript possui uma grande tolerância a erros, ou seja, nem sempre o erro mostra um comportamento diferente.
+- O JS é enviado, pelo navegador, junto com HTML. Para que o navegador saiba diferenciar HTML de JS, é preciso envolver o código JS dentro das tags <script></script>
+
+CONSOLE
+É um componente que acompanha grandes números de navegadores, e servem para debugar o código fonte da página, inclusive auxiliando nos códigos Java Script.
+
+
+AUTOMATIC SEMICOLON INSERTION (ASI) - "INSERÇÃO AUTOMÁTICA DE PONTO E VÍRGULA"
+
+O ponto e vírgula é fundamental e não pode ser omisso no final de cada linha em JS devido o mecanismo chamado (ASI).
+
+SEPARANDO O ARQUIVO JS DO HTML
+<script	type="text/javascript" src="js/hello.js"></script>
+
+var mensagem = "Olá mundo";
+alert('mensagem'); - exibe a mensagem para usuários.
+console.log(mensagem); - imprime o conteúdo escodido no console. 
+
+Quando o console estiver aberto, não há necessidade de usar console.log para chamada de mensagem, basta chamar a variável.
+
+DOM - PÁGINA NO MUNDO JAVASCRIPT
+
+Para permitir alterações na página, ao carregar HTML da página, os navegadores carregam em memória uma estrutura de dados que representam cada uma de nossas tags no JavaScript. Essa estrututura é chamada de DOM ( Document Object Model ). Essa estrutura pode ser acessada pela variável global Document.
+Document é o termo usado para as nossas páginas.
+
+document.querySelector("h1"); - Pegar uma tag
+document.querySelector(".class"); - pegar o valor de uma class
+document.querySelector("#id"); - pegar o valor de um ID
+
+- querySeletor
+
+ELEMENTO DA PÁGINA COMO VARIÁVEL
+
+- Pegando o valor de uma tag e atribuíndo em uma variável:
+var titulo = document.querySelector("h1");
+
+- Visualizando o conteúdo da tag pela variável:
+titulo.textContent;
+
+- Alterando o conteúdo da tag:
+titulo.textContent = "Novo título";
+
+
+QUERYSELECTORALL
+
+document.querySelectorAll(".card") - exibe a tag chamada e seus filhos e netos...
+document.querySelectorAll(".card")[0] - exibe o filhos e netos da tag chamada, chamando os elementos desse array dentro de colchete começando do 0
+
+ALTERAÇÕES DO DOM
+Ao alterarmos os elementos da página, o navegador sincroniza as mudanças e alteram a aplicaçao em tempo real.
+
+FUNÇÕES E OS EVENTOS DO DOM
+Podemos alterar o documento todo através do JavaScript, podemos fazer alterações de um conteúdo clicando em botão ou quando e não quando carregamos a página.
+O problema é que todos código colocado dentro de <script> o html lê logo que a página é carregada.
+
+Para guardarmos um código para ser executado eventualmente, precisamos usar alguns recursos. Para isso começaremos criando uma função:
+
+- Criando a função:
+function mostraAlert(){
+	alert("Funciona!");
+}                                       
+
+Ao criarmos uma função o código dentro dela fica guardado e só será executado quando chamado em algum evento de click, por exemplo, quando chamamos a função.
+
+- Chamando a função: 
+mostraAlert();
+
+- Atribuíndo a propriedade ID do botão à variável botão
+//obtendo um elemento através de um seletor de ID
+var botao = document.querySelector("#botaoEnviar");
+
+- Chamando a função pelo evento no botão:
+
+botao.onclick = mostraAlert;
+
+
+EVENTOS DO MOUSE:
+
+oninput: quando um elemento input tem seu valor modificado
+onclick: quando ocorre um click com o mouse
+ondblclick: quando ocorre dois clicks com o mouse
+onmousemove: quando mexe o mouse
+onmousedown: quando aperta o botão do mouse
+onmouseup: quando solta o botão do mouse (útil com os dois acima para gerenciar drag'n'drop)
+onkeypress: quando pressionar e soltar uma tecla
+onkeydown: quando pressionar uma tecla
+onkeyup: quando soltar uma tecla
+onblur:	quando um elemento perde foco
+onfocus: quando um elemento ganha foco
+onchange: quando um input, select ou textarea tem seu valor alterado
+onload:	quando a página é carregada
+onunload: quando a página é fechada
+onsubmit: disparado antes de submeter o formulário (útil para realizar validações)
+
+Existem uma série de Eventos mais avançados como por exemplo: drag-and-drop, e até mesmo criação de eventos customizados.
+
+FUNÇÕES	ANÔNIMAS
+
+Antes, com a função, seria assim:
+	USANDO A FUNÇÃO EM QUALQUER PARTE DO CÓDIGO: (caso queira usar a mesma função diversas vezes em pontos diferentes do código).
+
+	- Nesse caso indicamos a função: "mostraTamanho" que será executada no momento em que alterarmos o valor em <input type="range">.
+	Não estamos executando a função "mostraTamanho()", já que não colocamos parênteses. Apenas está sendo indicado o nome da função que queremos executar: 
+	
+	inputTamanho.oninput = mostraTamanho;
+	
+	function mostraTamanho(){
+		outputTamanho.value = inputTamanho.value;
+	}
+
+	USANDO A FUNÇÃO EM APENAS UMA PARTE DO CÓDIGO: (no caso de uso exclusivo e específico em apenas um uso da função).
+	- Há algum outro lugar do código no qual precisamos chamar essa função? Não! Por isso damos nome à uma função, para que possamos usá-la em qualquer outra parte do código. 
+	- Também é muito comum que uma função tenha apenas uma chamada no código. Nesse caso, o JS permite que criemos uma função no lugar do nome dada a ela: 
+	- Nesse caso, transformamos "mostraTamanho" em uma função sem nome, uma função anônima. 
+
+	inputTamanho.oninput = function() {
+		outputTamanho.value = inputTamanho.value
+	}
+	
+		

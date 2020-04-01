@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="css/estilos.css">
         <link rel="stylesheet" href="css/produto.css">
         <link rel="stylesheet" href="css/open-iconic-master/font/css/open-iconic-bootstrap.scss">
+        <script type="text/javascript" src="js/produto.js"></script>
         <!--[if	lt	IE	9]>
         <script	src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
@@ -55,7 +56,8 @@
 
                         <fieldset class="tamanhos">
                             <legend>Escolha o tamanho:</legend>
-                            <input type="range" min="36" max="46" value="42" step="2" name="tamanho" id="tamanho">
+                            <input type="range" min="36" max="46" value="42" step="2" name="tamanho" id="tamanho" oninput="mostraTamanho();">
+                            <output	for="tamanho" name="valortamanho" id="valortamanho">42</output>
                         </fieldset>
 
                         <button	class="comprar" type="submit" >Comprar</button>
@@ -108,5 +110,14 @@
                 </ul>
             </div>
         </footer>
+
+         <script>
+             var inputTamanho = document.querySelector('[name=tamanho]');
+             var outputTamanho = document.querySelector('[name=valortamanho]');
+
+             inputTamanho.oninput = function() {
+                 outputTamanho.value = inputTamanho.value
+             }
+         </script>
     </body>
 </html>
