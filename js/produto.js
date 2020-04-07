@@ -1,6 +1,9 @@
-var inputTamanho = document.querySelector('[name=tamanho]');
-var outputTamanho = document.querySelector('[name=valortamanho]');
+window.onload = function() {
+    var inputTamanho = document.querySelector('[name=tamanho]');
 
-inputTamanho.oninput = function() {
-    outputTamanho.value = inputTamanho.value
+    var outputTamanho = document.querySelector('[name=valortamanho]');
+
+    inputTamanho.oninput = function () {
+        outputTamanho.value = inputTamanho.value;
+    };
 }

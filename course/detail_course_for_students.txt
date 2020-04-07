@@ -1473,4 +1473,68 @@ Antes, com a função, seria assim:
 		outputTamanho.value = inputTamanho.value
 	}
 	
-		
+
+MANIPULANDO STRINGS
+
+Uma variável que armazena um string faz muito mais que isso! Com isso podemos consultar seu tamanho e transformar seus valores.
+
+var empresa = "C&B";
+empresa.lenght; //tamanho da string
+empresa.replace("B","A"); //Retorna C&A
+
+CONVERSÕES
+
+	Podemos converer strings para numbers:
+
+var textoInteiro = "1000";
+var inteiro = parseInt(textoInteiro);
+
+var textoFloat = "10.22";
+var float = parseFloat(textoFloat);
+
+MANIPULANDO NÚMEROS
+
+	Number, assim como String, também é imutável. O exemplo abaixo altera o número de casas decimais com função toFixed. Esta função retorna uma string, mas, para ela funcionar corretamente, seu retorno precisa ser capturado:
+
+var milNumber = 1000;
+var milString = milNumber.toFixed(2); //recebe o retorno da função
+console.log(milString); //imprime a string "1000.00"
+
+CONCATENAÇÕES
+
+	É possível juntar tipos diferentes e o JavaScript se encarregará de realizar a conversão entre os tipos, podendo resultar em algo não esperado.
+
+- String com String:
+	var s1 = "Teste: ";
+	var s2 = "Contatenação";
+	console.log(s1+s2);//Imprime "Teste Concatenação"
+
+- String com outro tipo de dados:
+	var num1 = 2;
+	var num2 = 3;
+	var nome = "Teste";
+
+	console.log = num1+num2; \\retorna 5
+	console.log = num1+nome; \\retorna 2Teste
+	console.log = num1+nome+num2; \\retorna 2Teste3
+	console.log = nome+(num1+num2); \\retorna Teste5
+	console.log = nome+num1*num2; \\retorna Teste6
+
+NaN - Not a Number
+	Esse resultado indica que todas operações matemáticas, exceto subtração, só podem ser feitas com números. O valor NaN possui uma peculiaridade, definida em suas especificações.
+Exemplo: 
+	console.log(10-"curso") \\retorna NaN
+	var resultado = 10-"curso";
+	resultado == NaN;
+	NaN == NaN;
+
+Obs.: Não é possível comparar NaN com NaN. Para saber se uma variável é NaN, deve ser usada a função isNaN:
+	var resultado = 10-"curso";
+	isNaN(resultado);//true;
+
+
+
+
+
+
+ 

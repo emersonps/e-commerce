@@ -56,7 +56,7 @@
 
                         <fieldset class="tamanhos">
                             <legend>Escolha o tamanho:</legend>
-                            <input type="range" min="36" max="46" value="42" step="2" name="tamanho" id="tamanho" oninput="mostraTamanho();">
+                            <input type="range" min="36" max="46" value="42" step="2" name="tamanho" id="tamanho">
                             <output	for="tamanho" name="valortamanho" id="valortamanho">42</output>
                         </fieldset>
 
@@ -110,14 +110,5 @@
                 </ul>
             </div>
         </footer>
-
-         <script>
-             var inputTamanho = document.querySelector('[name=tamanho]');
-             var outputTamanho = document.querySelector('[name=valortamanho]');
-
-             inputTamanho.oninput = function() {
-                 outputTamanho.value = inputTamanho.value
-             }
-         </script>
     </body>
 </html>

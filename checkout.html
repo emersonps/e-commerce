@@ -3,6 +3,8 @@
     <head>
         <meta charset="utf-8" name="viewport" content="width=device-width">
         <link rel="stylesheet" href="css/bootstrap.css">
+        <script	type="text/javascript" src="js/total.js"></script>
+
         <title>Mirror Fashion</title>
 
         <style>
@@ -67,11 +69,26 @@
                                 <dd>Verde</dd>
                                 <dt>Tamanho</dt>
                                 <dd>40</dd>
-                                <dt>Preço</dt>
-                                <dd>R$	129,90</dd>
+                                <dd	id="preco">R$129,90</dd>
                             </dl>
                         </div>
                     </div>
+
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="qtd">Quantidade:</label>
+                                <input type="number" id="qtd" min="1" max="99" value="1" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="total">Total:</label>
+                                <output	for="qtd preco" id="total" class="form-control">
+                                    R$	129,90
+                                </output>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -143,10 +160,6 @@
             </button>
         </form>
     </div>
-
-    <script>
-        alert("Olá, mundo!");
-    </script>
 
     </body>
 </html>
