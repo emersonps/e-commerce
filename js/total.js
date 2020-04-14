@@ -14,4 +14,3 @@ window.onload = function () {
         $output_total.value = total;
     }
 };
-

@@ -1533,6 +1533,151 @@ Obs.: Não é possível comparar NaN com NaN. Para saber se uma variável é NaN, dev
 	isNaN(resultado);//true;
 
 
+ARRAY
+É útil para quando quisermos trabalhar com vários valores armazenados.
+
+Ex.: 
+var palavras = ["Curso","JavaScript"]; //Criar um array com chaves e valores : 0 => Curso,1 => JavaScript;
+
+push.palavras("HTML"); //Adiciona uma nova chave e valor em sequência no array específico.
+
+Também podemos guardar valores diferentes: 
+
+var variosTipos = ["Curso", 10, [1,2]]; 
+
+Array tem seu tamanho definido de 0 até -1, podemos obter os valores chamando o array e especificando a chave da posição do valor:
+
+console.log(variosTipo[0]) //Imprime "Curso"
+console.log(variosTipo[1]) //Imprime 10
+console.log(variosTipo[2]) //Imprime [1,2]
+
+	1. ADICIONANDO ELEMENTO PELO ÍNDICE:
+	
+	Invés de usar o Push, que adiciona o valor no último elemento do array, podemos especificar a ordem que desejamos inserir o valor:
+
+var palavras=["Curso","HTML"];
+palavras[9] = "JavaScript;
+
+console.log(palavras[0]) //Imprime "Curso"
+console.log(palavras[1]) //Imprime "HTML"
+console.log(palavras[...]) //Imprime undefined
+console.log(palavras[9]) //Imprime JavaScript
+
+Dessa forma aumentamos o tamanho do array para 10 e incluíremos o valor na posição 10, com isso, as posições intermediárias ficarão com o valor undefined.
+
+Obs.: O tamanho de um array é dinâmico. Sendo assim podemos inserir qualquer valor, quantas vezes quisermos e ele ajustará seu tamanho quando necessário.
+
+BLOCO DE REPETIÇÃO
+
+	Imagina que queremos desenvolver uma série de repetição para um código, repetida vezes até que a condição seja comtemplada, ou enquanto ela for verdadeira.
+	O mais comum é o "for":
+
+	1. FOR - Precisa de alguma condição para que sua execução não se repita infinitamente.
+
+for(/*variável de controle*/ ; /* condição */ ; /* pós execução */ ){
+	//código a ser repetido
+}
+
+Das informações necessárias, somente a condição é obrigatória, mas normalmente utilizamos todas as informações:
+
+var palavras = ["HTML", "CSS"];
+
+for(var i = 0 ; i < palavras.length ; i++ ){
+	alert(palavras[i]);
+}
+
+	2. WHILE - Executa determinado código repetitivamente enquanto uma condição for verdadeira. Diferente do bloco for, a variável de controle, bem como sua manipulação, não são responsabilidade do bloco em si.
+
+var contador = 1
+
+while( contador <= 10 ){
+	alert(contador + " Teste");
+	contador++;
+}
+
+alert("Valor do contador: " + contador);
+
+
+FUNÇÕES TEMPORAIS
+	Em JavaScript, podemos criar um "timer" para executar um trecho de código após um certo tempo, ou ainda executar algo de tempos em tempos.
+
+	A funão  "setTimeout" permite que agendemos alguma função apara execução no futuro e recebe o nome da função a ser executada e o número de milissegundo a esperar:
+
+	//executa a minhaFuncao daqui um segundo
+	setTimeOut(minhaFuncao, 1000);
+
+	Se for um código recorrente, podemos usar o setInterval que recebe os mesmos argumentos mas executa a função indefinidamente de tempos em tempos:
+
+	//executa a minhaFuncao de um em um segundo
+	setInterval(minhaFuncao, 1000);
+
+Obs.: É uma função útila para implementação de um banner rotativo, por exemplo.
+
+	
+	As funções temporais devolvem um objeto que representa um agendamento que foi feito. É possível usá-lo para cancelar a execução no futuro. É especialmente interessanto no caso do "interval" que pode ser cancelado de sua execução infinita:
+
+	//agenda uma execução qualquer
+	var timer = setInterval(minhaFuncao, 1000);
+
+	//cacela execução
+	clearInterval(timer);
+
+
+ONCLICK E ONSUBMIT OU ADDEVENTLISTENER
+
+Na função abaixo, usamos o "onclick" com "onsubmit" no mesmo elemento sendo manipulado:
+
+	document.querySelector('#destaque').onclick = function() {
+		//tratamento do evento
+	};
+
+	- É uma forma fácil e portável de tratar eventos;
+	- O maior problema é que só podemos atrelar uma única função ao evento.
+	- Colocar uma segunda função no para executar no mesmo evento, ele sobrescreverá a anterior.
+
+A maneira mais recomendada de se associar uma função a eventos é o uso do AddEventListener:
+
+	document.querySelector('#destaque').addEventListener('click', function() {
+		//tratamento do evento
+	});
+	
+	- Dessa forma, conseguimos adicionar vários listeners ao mesmo evento, deixando o código mais flexível. A desvantagem é que esse evento não funciona no IE8.
+	- Para funcionar no IE8 ou anterior, usamos o seguinte evento:
+	
+	document.querySelector('#destaque').attachEvent('onclick', function() {
+		//tratamento do evento
+	});
+
+	
+	- O problema é que sempre deveremos usas as duas coisas para manter a compatibilidade.
+
+Essa questão pode ser resolvida pelos famosos Frameworks JavaScript, como o jQuery.
+
+CONTROLANDO VALIDAÇÕES HTML 5
+
+O navegador possui opções padrões, e nem sempre é o que precisamos em nossa página. Podemos mudar esse comportamento ou personalizar para deixar da forma que queremos.
+
+Usando o JavaScrip, podemos desabilitar a validação de campos, por exemplo, e fazer a nossa própria.
+
+<script	type="text/javascript">
+	document.querySelector('form input').oninvalid = function(event) {
+ 		//cancela comportamento padrão do browser
+		event.preventDefault();
+	
+		//verifica a validade e mostra o alert
+		if(!this.validity.valid){
+			alert("Nome obrigatório!");
+		}
+	};
+</script> 
+
+
+
+
+
+	
+
+
 
 
 
