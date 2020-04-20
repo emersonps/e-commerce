@@ -1672,14 +1672,327 @@ Usando o JavaScrip, podemos desabilitar a validação de campos, por exemplo, e fa
 </script> 
 
 
+JQUERY 
+	JQuery é uma biblioteca JavaScript que traz diversas soluções que facilitam a vida do programador. Funcionalidades que se tornariam difíceis de serem executadas usando o JavaScript puro.
+	Além disso, suas funções traz uma maior compatibilidade com a maioria dos navegadores, permitindo assim, ao programador, desenvolver códigos únicos para todos os navegadores.
+	O terceiro ponto que acrescetarei aqui é que, além de JQuery ser uma linguagem padrão na programação de Front-end para Web, ele traz, também, uma funcionalidade padrão que é selecionar um elemento e alterar seu conteúdo. 
+	
+JQUERY - FUNÇÃO $
 
+	JQuery possui um grande número de funções que facilitam a nossa vida. A mais importante delas, inicia a maioria dos códigos, é a função $. Com ela é possível selecionar qualquer elemento, com maior compatibilidade, e com menos código.
 
+Exemplo:
+	//JavaScript "puro":
+	var cabecalho = document.querySelector("#cabecalho");
 
+	if(cabecalho.attachEvent){
+		cabecalho.attachEvent("onclick", function(event){
+			alert("Você clicou no cabeçalho, usuário de IE!");		
+		)}
+	}else if(cabecalho.addEventListener){
+		cabecalho.addEventListener("click", function(event){
+			alert("Você clicou no cabeçalho!")
+		}, false);		
+	}
+
+	//JQuery
+	$(#cabecalho).click(function(event){
+		alert("Você clicou no cabeçalho!");
+	});
 	
 
+	No JQuery o código é bem menor, e o resto, a biblioteca se encarrega de o modo mais compatível possível para adicionar o evento ao elemento com o nome específico, no caso: #cabecalho.
+	- Existem diversas funções que o JQeury possui e que nos permite aplicar ao elemento especificado na função $, ou seja, a função pode ser encadeada:
+
+$("#cabecalho").css({"margin-top" : "20px", "color" : "#333"})
+	.addClass("selecionado");
+
+	Note que:
+	1. Chamamos a função $ e passamos como argumento uma string com o nome do seletor;
+	2. Chamamos a função CSS e, passamos um objeto como argumento, idêntico ao utilizado dentro do CSS. Isso será passado como atributos ao seletor que especificamos na função $;
+	3. Chamos mais uma função, a addClass, que vai adicionar o valor "selecionado" ao atributo class do elemento com id cabecalho. 
 
 
+JQUERY SELECTORS
+	Uma grande vantagem de se usar JQuery é que podemos selecionar elementos a partir de seletores CSS. 
+	Com CSS vimos como alterar de várias formas um elemento, mas nem todos os navegadores funcionam.
+	Contudo, no JQuery, temos todos à nossa disposição.
+
+	Por exemplo, se quisermos esconder todas as tags <td> filhas de um <tbody>, basta fazer o seguinte:
+
+	$('tbody td').hide();
+
+	1. SELETORES MAIS COMUM
+	//Pintar o fundo do formulário com ID "form" de preto
+	#('#form').css('background':'black');
+
+	//esconde todos os elementos com o atributo "class" igual a "headline"
+	#('.headline').hide();
+
+	//muda o texto de todos os parágrafos
+	$('p').text('Alô :D');
+
+	Mais exemplos:
+	$('div > p:first'); //o primeiro elemento <p> imediatamente filho de um <div> 
+	$('input:hidden'); //todos os inputs invisíveis 
+	$('input:selected'); //todos os checkouts selecionados 
+	$('input[type=button]'); //todos os inputs com type="button" 
+	$('td, th'); //todas as tds e ths 
+	
+	A função que chamamos após o seletor é aplicada para todos os elementos retornados. Exemplo:
+	
+	//forma ineficiente
+	alert( $('div').text() + $('p').text() + $('ul li').text() );
+
+	//forma eficiente
+	alert($('div, p, ul li').text());
+
+	A função text() é chamada para todas as tags: <div>s, <p>s, <ul>s e filhos seguidos: <li>		
+
+	FILTROS CUSTOMIZADOS E POR DOM
+	
+	Existem diversos seletores herdados do CSS que serevem para selecionar elementos baseados no DOM. 
+	Vejamos alguns:
+
+	$('div > p'); //<p>s imediatamente filhos de <div>
+	$('p + p'); //<p>s imediatamente precedidos por outro <p>
+	$('div:first-child'); //um elemento <div> que seja o primeiro filho 
+	$('div:last-child'); //um elemento <div> que seja o último filho
+	$('div > *:first-child'); //um elemento que seja o primeiro filho direto de uma <div>
+	$('div > *:last-child'); //um elemento que seja o último filho direto de uma <div>
+	$('div p:nth(0)'); //o primeiro elemento <p> filho de uma <div>
+	$('div:empty'); //<div>s vazias 
+
+UTILITÁRIOS DE ITERAÇÃO DO JQUERY
+	
+	O Jquery possui uma função que permite trabalhar com array de forma bastante interessante, pois permite interagir com array de forma mais agradável.
+
+$("#menu-departamentos li").each(function (index, item){
+	alert(item.text);
+})	
+
+	A função "each" chamada logo após um seletor executa a função que passamos como argumento para cada um dos itens encontrados ( chamamos de callback - função que usa outra função para executar uma rotina ). Essa função precisa de dois argumentos:o primeiro será o "índice" do elemento atual na coleção (0 para o primeiro, 1 para o segundo e assim sucessivamente), e o segundo será o próprio elemento.	
+	
+	Nesse caso, note que chamamos a função each logo após a função $ , pois essa implementação é um método do próprio objeto $. Passamos dois argumentos, o primeiro é o array que iremos percorrer e o segundo a função que desejamos executar para cada um dos itens do array.
+	
+	Outro exemplo, bem prático, seria usar essas funções para listar ítens de uma <ol>:
+Lista HTML:
+<ol id="my-list">
+  <li>Red</li>
+  <li>Green</li>
+  <li>Yellow</li>
+  <li>Blue</li>
+</ol>
+
+Chamada da Função:
+$('#my-list li').each(function(index, element) {
+ console.log(index + ' : ' + element.innerHTML);
+});
 
 
+Saída:
+0 : Red
+1 : Green
+2 : Yellow
+3 : Blue
 
- 
+CARACTERÍSTICAS DE IMPORTAÇÃO
+
+	1. Importação
+	Antes de mais nada devemos inserir o JQuery em nossa página para que os códigos possam ser lidos em nossa página. Por isso é necessário que a linha de importação do JQuery seja a primeira de todas na importação dos scripts JS.
+
+<script	type="text/javascript" src="scripts/jquery.js"></script>
+<!-- só podemos utilizar o jQuery após sua importação -->
+<script	type="text/javascript" src="scripts/meuscript.js"></script>
+<script	type="text/javascript" src="scripts/meuoutroscript.js"></script>
+
+	2. Executar somente após carregar
+
+	Como estamos alterando as características dos elementos, é necessário verificar e ter a certeza que esses elementos estão sendo carregados pelo navegador.
+
+	Podemos garantir isso executando o script após o término do carregamento total da página com a função $ da seguinte forma:
+
+	$(function() {
+		$("#cabecalho").css({"background-color" : "#000000"});
+	})
+	
+	Essa função que recebe uma função anônima como argumento garante que o código dentro dela seja executado ao fim do carregamento de todos os elementos da página.
+
+	TÉCNICAS DE IMPLEMENTAÇÃO
+	1. É muito bom fazer com que mais ítens da página sejam exibindo clicando em ítens na tela, ou simplesmente, passando o mouse sobre o elemento.
+
+TOGGLECLASS
+	Funciona como um 'if e else' para verificar se uma classe já existe ao ser chamada em uma função ou não:
+Por exemplo, um botão que clicamos uma vez para adicionar uma classe em uma div para exibir um conteúdo, e se clicar novamente ele deve ocultar, mas para isso precisaremos verificar se a classe já se encontra naquele componente:
+
+	Exemplo:
+
+	$('.novidades	button').click(function() {
+		$('.novidades').toggleClass('painel-aberto');
+	});
+
+PLUGINS JAQUERY
+	Além de usar os componentes JavaScript que já vêm prontos no Bootstrap, também podemos baixar outros plugins feitos para JQuery ou para Bootstrap que trazem novas funcionalidades. 
+	
+	O JQuery é rico em plugins disponíveis, inclusive no próprio site há um diretório recheado de plugins: https://plugins.jquery.com/tag/jquery/
+	
+	Cada plugin é um arquivo JavaScript que você adiciona à página e adiciona uma funcionalidade específica. Alguns necessitam de alteração no código, outros já são mais plug and play.  (é necessário consultar a documentaçã do plugin específico).
+
+	Exemplo, máscaras numéricas:
+	1. Baixamos e instalamos o plugin na pasta js:
+	2. Na página específica chamamos o plugin no final da página:
+	<script	type="text/javascript" src="js/inputmask-plugin.js"></script>
+	3. Cada campo que desejarmos acionar essa máscara, devemos adicionar os atributos:
+		- para CPF: data-mask="999.999.999-99"
+		- para Cartão com código de verificação: data-mask="9999 9999 9999 9999 - 999"
+
+INTEGRAÇÕES COM SERVIÇOS WEB
+
+	1. Web 2.0 e Integrações
+
+	Boa parte do grande poder da Web, de estarmos conectados o tempo todo, é o de permitir a integração entre as páginas. A Web nasceu com esse conceito, de tudo interligado através de links.
+
+	Mas a tal Web 2.0 trouxe ideias ainda mais complexas. Interligar páginas e serviços diferentes, criando novos resultados através de novas páginas. 
+
+	Podemos ver mapas do Google maps espalhados em vários sites por aí. Ou os onipresentes botões de curtir do Facebook. E muitos outros exemplos.
+
+	2. IFRAMES
+	Uma das formas de fazer esse tipo de integração é com o uso da tag <iframe>. Ela nos permite embutir o conteúdo de uma outra página no meio da nossa muito facilmente.
+	
+	<iframe src="outrapagina.html"></iframe>
+
+	Podemos incluir páginas internas ou externas. E quando se trata de externas é fácil de usar esse recurso para incluir componentes reaproveitáveis de outros serviços. Como mapas.
+
+	3. Vídeos do Youtube 
+	O Youtube provê uma integração muito fácil com nossas páginas. Podemos incluir qualquer vídeo para ser tocado diretamente em nossa página.
+	Basta entrar no youtube e copiar o endereço de um <iframe> que eles disponibilizam para ser embutidos em nossas páginas. 
+
+FONTES CUSTOMIZADAS COM @FONT-FACE
+
+	Fontes na web sempre foram um problema. Só podemos declarar no fonte familly aquelas que estão na máquina local, o que restringe bastante a opção.
+
+	Desde o CSS2.1 ficou possível usar fontes declarando a propriedade @font-face indicando a URL onde o navegador pode baixar aquela fonte.
+
+	@font-face{
+		font-family: "Minha Fonte";
+		src: url("minhafonte.ttf);
+	}
+	
+	Essa funcionalidade existe desde o Internet Explorer 4.
+
+	Mesmo assim, ainda nos deparamos com problemas de incompatibilidade. O suporte aos navegadores ainda é um grande problemas. Cada um suporta um tipo de arquivo. Fontes true type, por exemplo, padrão entre designers, só é suportado através do IE9. 
+	- O IE usava fontes no formato EOT;
+	- Outros navegadores TTF;
+	- O iPhone só SVG;
+	- E surgiu o terceiro, o WOFF, que agora faz parte da especificação.
+
+
+SERVIÇOS DE WEB FONTS
+
+	Lidar com essas diferenças entre navegadores é um problema, sem contar o fato de conseguir a legalidade das fontes em serviços e formatos corretamente e otimizado.
+
+	Ultimamente alguns serviços de terceiros dominaram a Web, e oferecem infraestrutura necessária para usarmos as fontes na Web sem problemas e sem a necessidade de instalação. As fontes são sevidas direto do servidor de serviço em uso de maneira correta e rápida.
+
+	Exemplos: http://typekit.com/
+	
+	É um serviço pago, mas com preços acessíveis e planos com todo tipo de fonte. Além do catálogo imenso com fontes famosas e em alta definição.
+
+	A alternativa gratuita e mais famosa a ferramenta do Google Web Fonts: https://www.google.com.br/fonts
+
+	É provido pelo Google, possui um catálogo bastante limitado, mas com excelentes opções; fácil de ser integrado à página web, bastando importar o CSS deles e usar a fonte.
+
+	Exemplo:
+	Importar no Index: 
+	<link href='http://fonts.googleapis.com/css?family=PT+Sans|Bad+Script' rel='stylesheet'>
+
+	Definir a fonte no CSS:
+	body{
+		font-family: 'PT Sans', sans-serif;
+	}
+
+	.painel h2{
+ 		font-family: 'Bad Script', sans-serif;
+	}
+
+
+APÊNDICE - OTIMIZAÇÕES DO FRONT-END
+
+	Estudos de diversas empresas ao redor do mundo comprovaram que sites rápidos, além de mais prazerosos de usar, trazem mais conversões, vendas e usuários felizes.
+	
+	- A Amazon, por exemplo, descobriu que 100ms de melhora na velocidade de crregamento da página trazia um crescimento de 1% em seus faturamento.
+	- O Yahoo! provou que cada 400ms de melhora em sua homepage provoca um aumento de 9% no tráfego de usuários. 
+	- A Mozilla tornou suas páginas 2.2s mais rápidas e, com isso, causou um aumento de 15% nos downloads do Firefox. São 60 milhões de downloads a mais por ano.
+	- O Google descobriu que aumentar o tempo de carregamento da página de busca de 0.4s pra 0.9s ao subir o número de resultados de 10 para 30 diminuía o tráfego para 20%
+	- Até a Caelum já fez experimento em seu site. Uma página que tinha tempo de carregamento de 6s em comparação com uma de 2s causava uma perda de 18%  na taxa de conversão.
+
+	1. OTIMIZAÇÃO É COISA DE PROGRAMADORES
+	- Muitos acham que a performance de um site tem a ver com o a parte server-side (lado servidor) do projeto. Certamente um código ruim no servidor pode causar imensos gargalos de performance. Uma query mal feita, um algoritmo custoso de executar etc.
+
+	- Na esmagadora maior parte das situações, a realidade é que o processamento server-side é responsável por pelo menos 10% do tempo total do carregamento da página. A maior parte dos gargalos de performance está em prática client-side.
+
+HTMAL E HTTP - COMO FUNCIONA A WORLD WIDE WEB?
+
+	- A primeir coisa que devemos levar em consideração no ciclo de comunicação entre o navegador (cliente) e o servidor, é que o cliente deve conhecer a localização da página (recurso) que ele deseja obter e exibir ao cliente.
+	- O cliente deve ser informado de qual o endereço do recurso necessário em determinado momento, normalmente o usuário final provê essa informação entrando em um endereço na barra de endereço do navegador, ou clicando em um link.
+	- Esse endereço é conhecido como URL (Universal Resource Locator), por exemplo:
+	http://209.85.227.121:80/index.html
+	
+	O Endereço exemplificado é formado por 4 partes básicas:
+	1. Protocolo de Comunicação a ser utilizado para obtenção do recurso. No exemplo citado, o protocolo utilizado pé o HTTP.
+		- A comunicação entre um cliente (geralmente o navegador). 
+		- Um servidor pode ser feito com o uso de diversos protocolos, por exemplo, o FTP (File Transfer Protocol) para a transferência de arquivos, ou o protocolo file, de leitura direta de arquivos quando desejamos obter um recurso acessível diretamente pelo computador sem utilizar uma conexão com um servidor Web.
+	2. ' // ' e 3. ' / ' , são os endereços de IP do servidor (onde está hospedados os recursos que queremos) e a porta de comunicação com o servidor. 	
+		- Os servidores Web utilizam a porta 80 por padrão, então no exemplo citado, poderíamos ter omitido essa informação que a comunicação seria feita com sucesso. 
+		- O endereço IP é um código ocupado de 4 octetos representados em formato decimal separados por um ponto, é um número um tanto difícil de ser memorizado.
+		- A próxima geração de IP, criada para evitar o fim dos endereços disponíveis é formado por 8 grupos de 4 dígitos hexadecimais separados por ":", por exemplo: 2001:0db8:85a3:1319:8a2e:0370:7344, por isso a Web utiliza servidores de nomeação de domínio (DNS - Domain Name System), para que o usuário final possa iformar um nome em vez de um número e uma porta, por exemplo: www.caelum.com.br.
+
+	4. O caminho do recurso que desejamos obter dentro do servidor. No nosso exemplo estamos solicitando o arquivo index.html, que é o nome padrão de arquivo para a página inicial de um site, e, nesse caso, também poderia ser omitido. A doação desses valores padrões permite que para obtermos a página inicial do Site, os usuários finais digitem somente o nome do endereço: www.site.com.br na barra de endereço.
+	
+
+O CICLO HTTP
+	Uma URL é um recurso usado para adicionarmos links em nossa página. Através dos links podemos ter acesso à conteúdo local ou externo. Mas o que acontece quanco clicamos em um link ou clicamos em ir logo após digitar um dendereço na barra de endereço ?
+	- Essas ações disparam uma chamada, dando início ao ciclo HTTP. 
+	- Essa chamada é o que chamamos de requeste, ou seja, requisição.
+
+	A correta comunicação entre os dois lados do ciclo depende de uma série de informações. Um HTTP request leva consigo todos os dados necessários para que o lado do servidor tome a decisão correta sobre o que fazer. Existem algumas ferramentas que permitem observar quais são essas informações. 
+
+	- O protocola HTTP pode ser utilizado por uma série de aplicações, para uma série de finalidades. Nosso foco é no uso do HTTP para páginas da web que podemos acessar de um navegador. Alguns navegadores incluem ferramentas de inspeção da página em exibição, e a maioria dessas ferramentas consegue nos mostrar o conteúdo da requisição HTTP. Uma dessas ferramantas o complemento Firebug, disponível para o navegador firefox. 
+
+	Em alguma dessas ferramantas veremos que a primeira informação que aparece é a palavra GET. 
+	- GET é um dos métodos suportados pelo http para realizar a comunicação, e ele deve ser utilizado quando queremos OBTER um recurso que o servidor tem acesso.
+(ou seja, quando quisermoa visualizar as informações que o serviços de request está fazendo).
+	- Caso o servidor encontre o recurso que queremos:
+		- Ele retorna para o cliente um RESPONSE (resposta) contendo o recurso que desejamos.
+	- Outra informação importante são:
+		- os endereços do recurso que desejamos obter (HOST)
+		- O tipo de recurso que o cliente espera obter (Accept) 
+
+Essa resposta contém uma série de informações importantes para que o cliente possa tomar as decisões necessárias e, no caso de sucesso na comunicação, exibir o recurso para o usuário. 
+	
+	As informações mais importantes, no nosso caso, são o código de resposta e o tipo de recurso encontrado ( Content-Type ). Podemos encontrar o código 200 que indica que o recurso foi localizado com sucesso e incluído na resposta. 
+
+
+PRINCÍPIOS DA PROGRAMAÇÃO DISTRIBUÍDA
+
+	Uma página Web é uma programação distribuída. Isso significa que há uma comunicação distribuída via redes entre dois pontos. No caso, o navegador e o servidor da página.
+	
+	E, como toda aplicação distribuída, há alguns princípios básicos de performance. Quando há comunicação remota envolvida, geralmente queremos:
+
+	- Diminuir o volume de dados trafegados entre as partes;
+	- Diminuir o número de chamadas remotas;
+
+FERRAMENTAS DE DIAGNÓSTICO - YSLOW E PAGESPEED
+
+	O primeiro passo é saber o que melhorar. Há diversas boas práticas focadas na literatura de performance Web. 
+	Existem ferramentas que nos auxilia no diagnóstico que analisam a página dão dicas sobre o que e como melhorar. Há até notas de 0 a 100 para você saber o quão bem está nas práticas de otimização.
+
+	As mais famosas são:
+	YSlow - feita pelo Yahoo;
+	PageSpeed - feita pelo Google.
+
+	Ambas são extensões para Firefox  e Google Chrome:
+
+	- Há algumas regras que envolvem programação no servidor, como configurar compressão GZIP ou acertar os headers HTTP. É uma boa conversar com a equipe do projeto para também fazerem esses acertos, tais como minimificar/comprimir os códigos js e css; 
+
+COMPRESSÃO E MINIFICAÇÃO DE CSS E JAVASCRIPT
+	
