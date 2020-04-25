@@ -1996,3 +1996,354 @@ FERRAMENTAS DE DIAGNÓSTICO - YSLOW E PAGESPEED
 
 COMPRESSÃO E MINIFICAÇÃO DE CSS E JAVASCRIPT
 	
+	É importante fazer códigos legíveis usando identações bem espaçadas, nomes de variáveis simples, bom espaçamento visual.
+	Entretanto, nada disso importa na navegablidade do Web site, pois tudo isso se torna inútil na hora da execução. 
+	Muito mais que isso, todas essas práticas acrescentam bytes na hora de renderizar a página. Então por quê gastar bytes com coisas desnecessárias?
+
+	Minificação de CSS e JavaScript nos ajuda a otimizar nosso site. 
+
+	Como funciona? Bem, rodamos uma programa compressor nos nossos arquivos para tirar todos esses bytes desnecessários para simples execução. O resultado são arquivos CSS e JavaScript idênticos em funcionalidades mas sem bytes de comentários, identações e etc. Até variáveis longas são reescritas com nomes mais curtos tipo 'a', 'b' etc.
+
+	A boa prática continua sendo escrever códigos bem legíveis e bem documentados. 
+
+	1. YUI Compressor
+	Compressor do Yahoo - comprime tanto código CSS como JavaScript
+	http://developer.yahoo.com/yui/compressor/
+
+	- YUI é uma ferramenta de linha de comando. Podemos salvá-lo no local desejado, em seguida rodar o seguinte comando especificando o arquivo que desejamos comprimir:
+	java -jar yuicompressor-x.y.z.jar script.js -o script-min.js
+	ou:
+	.\yuicompressor-x.y.z.jar script.js -o script-min.js
+
+	Também existe uma solução online: https://refresh-sf.com/
+
+	1. COMPRESSÃO DE IMAGENS
+	Imagens também são fortes candidatas a otimização. 
+	
+	O HTTPArchive.org armazena informações históricas coletasdas mensalmente sobre os 17 mil sites mais acessados da Internet Mundial. Com base nelas, compila alguns dados e gráficos interessantes.
+	
+	E, com relação à imagens, os estudos comprovam que 60% do peso de uma página está nelas:
+
+	Average Bytes per Page by Content Type
+	Scripts - 152kB
+	Stylesheets - 30kB
+	Flash - 86kB
+	Other - 31kB
+	HTML - 37kB
+	Imagens - 494kB
+	
+	Total - 830kB
+	
+	Se conseguirmos otimizar as imagens o resultado final será de grande impacto.
+
+	2. OTIMIZAÇÃO LOSSY
+	- Esse termo está relacionado à perca de qualidade. Quando salvamos imagens em jpg, podemos escolher o grau de compressão, obtendo imagens menores mas sacrificando a qualidade.
+	
+	- Devemos observar até que ponto esse tipo de compressão pode prejudicar a nossa imagm, levando em consideração que muitos desses efeitos causados passa despercebido ao olho nu e menos analítico dos usuários Web.
+	
+	- Podemos fazer essas alterações em nosso editor preferido, manualmente. Ou podemos usar serviços web de ótima qualidade, como o JPEGMini.
+	Eles usam um algoritmo que promete simular as características de percepção do olho humano, o que nos permite "piorar" a qualidade da imagem apenas em pontos que são poucos percebidos pelo nosso olhar.
+
+	http://www.jpegmini.com/
+
+	
+	3. DESIGN OTIMIZADO
+	- Com o poder do CSS3 em diante, muitos recursos que, antes só podia ser feito através de imagens, hoje podemos substituir por comandos CSS.
+	- Isso nos ajuda e otimizar bastante nosso site.
+
+	4. OTIMIZAÇÃO LOSSLESS 
+	- A otimização mais simples e eficaz com imagens é chamamos de compressão 'lossless'. É diminuir o tamanho da imagem sem perder absolutamente nada na qualidade da imagem.
+	- Isso é possível porque os formatos de imagens (JPEG, GIF e PNG) em geral guardam em seus arquivos mais informações do que o necessário para renderizar uma imagem. Por exemplo, diversos metadados são imbutudos nas imagens quando a salvamos, como, por exempo, data e hora, localização, coordenadas de GPS em casos de algumas câmeras, ou em outros casos como na exportação de imagens pelo Photoshop levam bastantes metadados e incluindo alguma miniatura da imagem embutida no mesmo arquivo.
+	- Ferramentas para esse tipo de otimização: Smush.it
+	http://smush.it/
+	- Ou podemos usar um programa desktop muito bom: https://riot-optimizer.com/
+
+	5. DIMINUIR NÚMERO DE REQUEST
+	- Até o momento usamos práticas para diminuir o tamanho das requisições e o volume de tráfego de dados. 
+	- Devemos levar em consideração, também, a redução de número total de request.
+	- No próprio console do navegador, ao pressionar F12 e clicar na aba Network, ou usando o YSlow, podemos visualizar todos os arquivos na requisição do nosso site: CSS, JavaScript, Imagens, Flash etc, requisições feitas ao servidor. Isso sem contar com o próprio HTML da página e em possíveis Request extras numa aplicação como Ajax.
+	- Cada requisição envolve uma chamada para o servidor o que gera um OVERHEAD bastante grande. A maior parte do tempo de um request é gasto em tarefas de rede (DNS, SSL, TCP/IP). 
+	- Quando otimizamo os requests podemos notar que apenas uma pequena parte é gasta cmo download dos bytes.
+	- Fora o gragalo da própria rede, existe uma limitação no número de requisições que um navegador faz simultaneamente a um mesmo servidor. Esse número varia e pode ser baixo em alguns servidores antigos (apenas 2 conexões). Nos navegadores mais modernos, gira em torno de 6 a 8 conexões. Parece um número alto - e realmente foi uma grande evolução -, mas se você começar a contar todos os arquivos externos que está usando, verá que há chances de uma página mediana fazer dezenas de requisições (requests).
+	 
+	- O HTTPArquive reporta uma média de mais de 80 requests (em kB) sendo feitos na págin, ou seja, mesmo com 8 conexões simultâneas, o volume de requests é bem maior, o que vai atrasar o carregamento total da página. Em casos (como arquivos JS), o navegador fica travado até que todos os downloads terminem. 
+
+	Diminuir o número de requisição é essencial!
+
+	6. JUNTAR ARQUIVOS JS E CSS
+
+	No caso de arquivos JS e CSS o bom é juntar diversos arquivos em um único número menor para minimizar as requisições.
+	- Se vamos usar um JQuery com 3 plugins e mais 2 arquivos de aplicação, poderíamos juntar todos em um ou 2 arquivos. 
+	- O Ideal é continuar usando as boas práticas de programação em arquivos separados, mas antes de hospedarmos podemos usar algumas ferramentas com recursos que juntam esses arquivos em um só. 
+	- O próprio JQeury faz isso. Se olharmos o arquivo jquery.js veremos que é um arquivo que juntou os outros 22 arquivos separados, que foram criados de maneira independente para melhor organizar e encapsular as funcionalidades do projeto.
+	- A mesa coisa vale para o CSS - Podemos criar arquivos com tipografia, outro com estrutura de layout e outro com estilos visuais, porém, na hora de subir a aplicação no ar, a boa prática é diminuir o número de arquivos e juntar quantos puder.
+
+
+IMAGEG SPRITES
+	É uma técnica utilizada para juntar imagens que consiste em criar um arquivo só e posicionar diversas imagens dentro. Depois, usando o CSS, "recorta-se" as partes da imagem que queremos em cada parte da página.
+	- O Google, por exemplo, usa essa técnia. Em sua home, existe um único arquivo de imagem com várias imagens em si e com css é definido a parte da imagem que desejam exibir na home page.
+	- A técnia é trabalhosa, pois inicia-se criando uma imagem só, depois precisaremos tomar nota dos tamanhos de cada imagem e das posições X e Y de cada uma delas.
+	- Utilizamos a propriedade background do CSS do elemento como na tácnica Image Replacement, mas precisamos especificar a posição da imagem em relação ao ponto inicial do elemento.
+	- Podemos ir em busca de ferramentas que nos auxiliam na criação desses arquivos.
+
+
+DATA URI
+	Pensando em diminuir mais o número de requisições para imagens, podemos utilizar uma técnica conhecida como Data URI. A ideia é embutir conteúdos binários (como imagens) dentro dos arquivos de textos (como HTML ou CSS). Basta converter os bytes da imagem em uma string comum que segue o formato de codificação chamado Base 64. 
+	- Esse processo de conversão é feito por algum programa que converta para a base64 ou diretamente no servidor por meio de código Java, PHP etc. 
+	- Há alguns servisos online que ajudam nessa tarefa.
+Exemplo:
+	Normalmente: 
+
+<img src="\img\figura.jpg">
+
+	Usando Data URI:
+
+<img src="data:image/png;base64,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
+ErkJggg==">
+
+	- Nem todos os navegadores suportam essa técnica, além disso, usá-la, exige um pouco de conhecimento de programação no servidor.
+
+Estudar mais sobre, no Blog: https://blog.caelum.com.br/por-uma-web-mais-rapida-26-tecnicas-de-otimizacao-de-sites/
+
+APÊNDICE - LESS
+	Less é uma linguagem de programação baseada em CSS (mesma ideia, sintaxe familiar) com recursos que fazem falta no CSS em algumas sistuações.
+	- É também conhecido como pré-processador, pois na verdade, é usado para gerar um arquivo CSS no final.
+	- Alguns dos recursos apresentados pela linguagem é o uso de variáveis, suporte a operações matemáticas, sintaxe mais compacta para representar hierarquias e mixins.
+
+	1. VARIÁVEIS
+	Podemos usar uma variável para definir uma cor padrão, por exemplo, para a aplicarmos em qualquer componente da nossa página. É aí que o CSS deixa a desejar, pois ele não possui suporte para criarmos variáveis, o LESS sim!
+
+	Exemplo:
+
+	@corprincipal: #BADA55;
+
+	#titulo{
+		font-size: 2em;
+		color: @corprincipal;
+	}
+
+	button{
+		background-color: @corprincipal;
+		color: white;
+	}
+
+	Repare que no @corprincipal que não é CSS puro, mas tem uma sintaxe muito parecida. Depois de compilado, o LESS vira esse CSS.
+
+	#titulo{
+		font-size: 2em;
+		color: #BADA55;
+	}
+	
+	button{
+		background-color: #BADA55;
+		color: white;
+	}
+
+	2. CONTAS
+
+	Sabe quando você tem aquele elemento principal com 960px mas que precisa de um padding de 35px e duas colunas lá dentro de tamanhos iguais mas deixando 20px entre elas? Qual seria o tamanho de cada coluna mesmo? 435px. Aí você coloca no CSS:
+
+	.container{
+		padding: 35px;
+		width: 960px;
+	}
+
+	.colunas{
+		width: 435px;
+	}
+
+	E quando alguém mudar o tamanho do padding, você torce pra lembrarem de refazer a conta da coluna - que, aliás, seria (960px - 35px * 2px - 20px) / 2px = 435px. No LESS poderíamos fazer a conta direto na propriedade e o resultado final é calculado:
+
+	.coluna{
+		width: (960px - 35px * 2px - 20px) / 2px;
+	} 
+	
+	Melhor ainda, junte com as variáveis que vimos antes e você nem copia e cola valores!
+
+	@total: 960px;
+	@respiro: 35px;
+	@espacamento: 20px;
+
+	.container{
+		padding: @respiro;
+		width: @total;
+	} 	
+	
+	.coluna{
+		width: (@total - @respito * 2 - @espacamento) / 2;
+	}
+
+	E dá pra fazer contas até de cores!
+
+	3. HIERARQUIA
+	Você tem um #topo com um título h1 dentro de uma lista li de links. E quer estilizar todos esses elementos. Algo assim:
+
+	#topo {
+		width: 100%;
+	}
+	#topo h1{
+		font-size: 2em;
+	}
+	#topo ul{
+		margin-left: 10px;
+	}
+	
+	E se precisarmos mexe no id topo? Ou trocar para header Semântico? Teríamos que alterar em três lugares, e também contar que ninguém tenha usado em outro canto. Sem contar que essas três regras não precisam estar necessariamente agrupadas no arquivo e podiam estar em outro arquivo qualquer. 
+
+	No LESS podemos escrever regras de maneira hierárquica, uma dentro da outra, e ele gera os seletores de parent. O mesmo CSS anterior podia ser escrito no LESS.
+
+	#topo{
+		width: 100%;
+		
+		h1{
+			font-size: 10px;
+		}
+
+		ul{
+			margin-left: 10px;
+		}
+	}
+
+	Podemos usar vários níveis de hierarquia (sem abuso!), deixando o código mais estruturado, flexível e legível.
+
+	4. FUNÇÕES DE CORES E PALHETAS AUTOMÁTICAS 
+
+	Muito útil para aplicação de cores secundárias, tipo aquelas cores que usam no fundo e no primeiro plano a mesma cor só que com nuance mais clara ou mais escura. Geralmente pegamos o código de cada cor ou jogamos no Photoshop, e tal... Bom, e se precisarmos mudar a cor, deve gerar as outras secundárias, certo? Com o LESS, podemos usar funções para gerar essas cores:
+
+	@corbase: #BADA55;
+
+	body{
+		background: lighten(corbase, 20%);
+	}
+
+	h1{
+		color: @corbase;
+	}
+
+	button{
+		background: saturate(@corbase, 10%);
+	}
+
+	- Vai gerar cores 20% mais lights e 10% mais saturadas:
+
+	body {
+		background:#dceca9;
+	}
+	h1 {
+		color:#bada55;
+	}
+
+	button{
+		background:#bfe44b;
+	}
+
+	Ainda temos: darken, desaturate, fadein, fadeout, spin, mix e até funções matemáticas como round.
+
+	5. REAPROVEITANDO COM MIXINS
+	É de grande utilidade o LESS pela sua capacitade de criar suas próprias funções, que ele chama de MIXINS. É útil quando temos que repetir a mesma coisa várias vezes, comos as propriedades do CSS que precisam de prefixos, tipo uma borda redonda:
+
+	Podemos definir um mixin recebendo como argumento o tamanho da borda e distribuindo as versões pros diversos navegadores:
+
+	.arredonda(@raio: 5px){
+		-webkit-border-radius: @raio;
+		   -moz-border-radius: @raio;
+			border-radius: @raio;
+	}
+	
+	Parece uma classe CSS mas ele recebe uma variável como parâmetro (que pode ter um valor default também). E você pode usar esse mixin facilmente:
+
+	.painel	{
+		.arredonda(10px);
+	}
+	
+	.container {
+		.arredonda;
+		width: 345px;
+	}
+
+	Isso gera o CSS:
+
+	.painel{
+		-webkit-border-radius:10px;
+		-moz-border-radius:10px;
+		border-radius:10px;
+	}
+
+	.container{
+		-webkit-border-radius:5px;	
+		-moz-border-radius:5px;
+		border-radius:5px;
+		width:345px;
+	}
+
+	Muito útil e, com infinitas possibilidades, podemos criar default para botões, cores, cores gradientes etc.
+
+	6. EXECUTANDO O LESS
+
+	- No site LESS, podemos baixar a versão standalone dele. (http://lesscss.loopinfinito.com.br/). ou http://lesscss.org/
+	- Podemos rodá-lo apenas rodando um JavaScript na página que faz o parsing (análise) dos arquivos .less quando ela carrega.
+	
+	<script	src="less.js" type="text/javascript"></script>
+	
+	- Com isso, podemos incluir diretamente o nosso arquivo .less usando uma tag <link> , colocada antes da tag que carrega o less .js :
+
+	<link rel="stylesheet/less" type="text/css" href="styles.less" />
+
+	Para melhorar a performance, o ideal seria gerar o CSS antes usando o compilador. Há uma versão em linha de comando usando o Node.JS, mas como é JavaScript, você pode rodá-lo em qualquer canto - até no Java com Rhino.
+
+	- Há também programas visuais para instalar, como o LESS.app e dá para testar código rapidamente online mesmo no LessTester.com	
+	
+	- No Windows também podemos usar o https://www.winless.org/ , que é fácil de usar.
+
+	- Também podemos usar uma versão Javascript do LESS, que transforma nosso código em CSS dentro do navegador.
+
+	- Com Less podemos fazer mixins mais complexos e, até mesmo, fazer uso de estrutura if, else.
+	
+	7. OUTROS PRÉ-PROCESSADORES CSS
+	
+	- Sass: https://sass-lang.com/ - muito usado e conhecido no mundo Ruby e é recheado de funções, fazendo com que ele se torne mais poderoso que o Less e mais complexo.
+	- Stylus: https://stylus-lang.com/ - A vantagem é que simplifica mais as sintazxe
+	
+	DICA: Para criar background/cores gradiente: https://www.colorzilla.com/gradient-editor/
+
+
+	

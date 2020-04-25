@@ -1,5 +1,5 @@
 window.onload = function () {
-    var	banners	= ["img/destaque-home.png", "img/destaque-home-2.png"];
+    var	banners	= ["img/destaque-home.jpg", "img/destaque-home-2.jpg"];
     var	bannerAtual = 0;
     function trocaBanner() {
         bannerAtual	= (bannerAtual + 1) % 2;
