@@ -6,7 +6,7 @@ body{
     width: 940px;
 }
 
-h1{
+h1:nth-last-of-type(2){
     background-image:	url(../img/sobre-background.jpg);
 }
 

@@ -2346,4 +2346,155 @@ APÊNDICE - LESS
 	DICA: Para criar background/cores gradiente: https://www.colorzilla.com/gradient-editor/
 
 
+	SAINDA DAS LIMITAÇÕES DE HTML 
+	- O navegador não executa qualquer tipo de código. Existem códigos que vai além de HTML, CSS e JavaScript. Em projetos mais robustos, ou mais dinâmicos deve-se envolver-se com uma linguagem mais robusta e complexa, que também envolve INSFRAESTRUTURA NO SERVIDOR.
+
+	1. Linguagens: Há diversas linguagens a serem usadas, tais como: PHP, Java, Ruby, Python, C#;
+	2. Servidores: Apache, Tomcat, JBoss, IIS, nginx e outros.
+
+	Linguagem no servidor é usada para: gerar páginas dinamicamente com dados de banco de dados da aplicação, enviar e-mails de usuários, processar tarefas complexas, validação de segurança garantida, e outras coisas mais.
+
+	COMO FUNCIONA UM SERVIDOR HTTP
+
+	Se escrevermos um código HTML simples e salvar o arquivo como .html, basta abri-lo no navegador e logo veremos o resultado do código na página. 
+	O Protocolo HTTP é útil para servir páginas na Web. Motivo pelo qual os endereços na web começam com HTTTP://. 
+	Quando acessamos uma página na Web, dizemos que estamos solicitando uma Requisição no Servidor. Ou seja, pedimos que certo conteúdo seja exibido.
+
+	Por exemplo: 
+		Ao acessar: http://www.site.com.br/pagina_x
+		- Estamos conectando via HTTP ao servidor www.site.com.br
+		- Requisitando a URL /pagina_x
+		- Do outro lado há um servidor HTTP esperando novas requisições que é responsável por servir o que o usuário está pedindo.
+		- Esse servidor é um programa que instalamos e é o responsável por processar as requisições.
+		- A grande questão é que esse servidor não precisa ser igual ao navegador, lê um código e envia o seu conteúdo para o cliente. 
+		- O servidor pode executar código e gerar HTML na hora pro cliente, dinâmicamente. E é esse processamento de lógica dinâmica que faremos como o PHP.
+
+	COMO FUNCIONA O PHP NO SERVIDOR
+	
+	Existem diversos servidores compatíveis com o PHP. O mais conhecido de todos é o Apache.
+	À partir do PHP 5.4, ele já vem com o servidor imbutido. Ideal para testes e desenvolvimento.
+	
+	- Ao entrar na pasta do projeto, digite no terminal: php -S localhost:8080 (-S indica que queremos o servidor imbutido nele)
+	- Depois basta digitar http://localhost:8080/ no navegador, e esperar o servidor responder.
+
+	Mas não precisa ser assim pra executar código PHP do lado servidor. Basta renomear o arquivo, por exemplo, index.html para index.php. Com isso, podemos misturar código PHP com HTML.
+	
+	Código PHP:
+
+	<?php 
+		//Código PHP
+	?>
+
+	Código PHP e HTML:
+
+	<h1>TITULO</h1>
+	<?php 
+		//Código PHP
+	?>
+	<p>Parágrafo</p>
+		
+	PHP - DATAS
+	https://www.php.net/manual/en/function.date.php
+	
+	REAPROVEITAMENTO DE CÓDIGO COM INCLUDE
+
+	Com HTML, a única solução é ficar copiando o código, com o PHP, podemos tornar o cabeçalhos e rodapés da página padrões reaproveitando com Include.
+
+	<?php include("arquivo.ext") ?>
+
+	SUBMISSÃO DO FORMULÁRIO
+
+	- Todo formulário criado em HTML tem seus dados enviados para o servidor quando submetidos. Cada campo do formuláro é enviado como parâmetro na requisiçao feita ao servidor.
+
+	- No formulário, podemos indicar que página (URL) irá receber esses dados, através do atributo 'action'.
+
+	- Também podemos indicar a maneira como os dados serão enviados, através do atributo 'Method' que pode ser definico como 'POST' ou 'GET'. Ambos os métodos enviam os dados ao servidor, mas o GET faz isso via parâmtro na URL enquanto o POST enviam os dados no corpo da requisição (e, portanto, não é visível na barra de endereços).
+	
+	<form action="pagina.php" method="POST">
+
+	PARÂMETROS COM PHP
+
+	- Os dados enviados no formulário são recebidos no PHP e podemos ter acesso a eles através do próprio PHP, usando $_GET e $_POST, dependendo de qual desses métodos foi usado no form.
+	- Para usar os valores, precisamos apenas saber o nome do componente HTML que foi criado: <input type="test" name="nome">
+	- No PHP, podemos acessar cada parâmetro individualmente usando uma sintaxe de arrays: <?php  $_GET['name']; ?> ou $_POST['name']
+	
+	LISTA DE DEFINIÇÕES HTML
+
+	- <ul> - trabalha com lista ordenadas - seguidas de <li>
+	- <ol> - trabalha com lista não ordenadas - seguidas de <li>
+	- <dl> - trabalha com lista de definições. Semanticamente, serve para criar lista de termos e suas respectivas definições - seguida de <dt> e <dd>
+
+	Exemplo:
+	<dl>
+		<dt>Cursos</dt>
+		<dd>Curso 1</dd>
+		<dd>Curso 2</dd>
+	</dl>
+
+	APÊNDICE - PHP: BANCO DE DADOS E SQL
+	
+	- Na maioria dos sistemas Web, os dados de negócio ficam separados em um banco de dados ao inves de ficar escrito diretamente no HTML. 
+	- No caso de uma loja virtual, os produtos seriam cadastrados nesse banco de dados externo e depois seus dados seriam exibidas na página .php .	
+	- Um banco de dados é parecido com uma planilha do Excel. Dentro dele temos várias tabelas separas por colunas e linha, e pode haver relacionamento entre elas.
+	- Para fazer uso, ou manipular os dados das tabelas de um BD, fazemos uso de uma linguagem separada conhecida como SQL. 
+	- SQL permite que façamos buscas nas tabelas por certos tipos de dados  e que possamos inserir, remover dados e atualizar dados.
+
+	MYSQL E PHPMYADMIN
+
+	- Bancos que aceitam comandos SQL: MySQL, Oracle, SQL Server, DB2, Postgre, SQLite. 
+	- Aqui usaremos MySQL
+	- Produtos com interface gráfica que ajuda na configuração: Workbench e o PHPMyAdmin.
+	- PhpMyAdmin é um administrador de MySQL escrito em PHP para Web, roda em servidor normal e pode ser acessado através do navegador.
+	
+	CONEXÃO COM BD
+	- $conexao = mysqli_connect("localhost", "root", "", "senha");
+	
+	BUSCA 
+	- $dados = mysqli_query($conexao, "SELECT * FROM produtos);
+
+	DADOS NO PHP
+	- Transformar dados da tabela em algo usável no PHP:
+	$produto = mysqli_fetch_array($dados);
+	
+	- A variável $produto é um array com os dados do primeiro produto da busca indexados pelo nome das colunas no banco de dados. Com isso, podemos acessar, por exemplo, o preço do produto fazendo: $produto['preco'] e assim por diante para cada coluna.
+
+	BUSCA DE MUITOS RESULTADOS
+	- Fazer um Select que busque todos os dados da tabela, pode ser custoso. Iamginem uma consulta pra listar milhares de registros da tabela? Podemos limitar a consulta da seguinte forma:
+	SELECT * FROM produtos LIMIT 0, 10
+	- Queremos 10 resultados contando à partir do primeiro (0).
+	- Podemos trocar o primeiro número para acessar informações em outras partes do banco.
+
+	ORDENAÇÃO DOS RESULTADOS
+	SELECT * FROM produtos ORDER BY nome
+	- Definir a ordem (ASC - Ascendente ou DESC - Decrescente).
+	SELECT * FROM produtos ORDER BY data DESC 
+	
+	LIMIT - 0 indica offset, ou seja, a partir de qual item queremos.
+		3,6 indica que queremos os itens do terceiro ao nono.			
+
+	
+	APÊNDICE - SUBINDO APLICAÇÃO NA NUVEM
+
+	- Existem diveros provedores com suporte a PHP e MySQL.
+	- Levar em consideração: preço, qualidade do serviço, suporte e reputação da empresa.
+	- Serviços que devemos escolher, entre duas opções, de várias:
+		1 Planos Clássicos: 
+			- Paga um valor fixo por mês e tem direito de usar uma máquina compartilhada com usuários. 
+			- Costumam ter um valor mais baixo, mas limitações técnicas em casos de site que tenham um pouc mais de usuários.
+		2. Plano Cloud Computing: 
+			- Não tem restrições técnicas com relação a volume de acesso.
+			- A aplicação pode começar pequena e crescer indefinidamente, sem problemas, em um ambiente escalável que cresce elasticamente conforme suas necessidades.
+			- Nesse cenário, paga-se por quanto usar dos recursos em cada mês, e não uma mensalidade fixa. 
+			- Costuma ter valor mais alto que hospedagens clássicas, mas traz um ambiente bem mais robusto.
+
+	
+	JELASTIC CLOUD LOCALWEB
+
+	- Permite subir uma máquina com PHP e MySql em instantes, e enviar ZIP com o nosso projeto para ser executado.
+	
+
+	APÊNDICE - MAIS INTEGRAÇÕES COM O SERVIÇOS WEB
+
+		
+	
 	
