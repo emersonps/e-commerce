@@ -1,5 +1,4 @@
 <?php 
-    $conexao = mysqli_connect("localhost","root","","ecommerce");
     $dados = mysqli_query($conexao, "SELECT * FROM produtos WHERE id = $_POST[id]");
     $produto = mysqli_fetch_array($dados);
 ?>

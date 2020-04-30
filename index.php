@@ -1,3 +1,5 @@
+<?php include("db.php") ?>
+
 <?php $cabecalho_title = '<title> Mirror - Home </title>'; ?>
 <?php include("cabecalho.php"); ?>
 
@@ -47,7 +49,7 @@
                 <h2>Novidades</h2>
                 <ol>
                     <?php
-                        $conexao = mysqli_connect("localhost", "root", "", "ecommerce");
+                        
                         $dados = mysqli_query($conexao, "SELECT * FROM produtos LIMIT 0, 12");
                         while ($produto = mysqli_fetch_array($dados)):
                     ?>
